@@ -8,18 +8,18 @@ conn = sqlite3.connect(database)
 OWL_MMS = pd.read_sql('select * from OWL_Match_Map_Stats_Raw', con=conn)
 conn.close()
 
-#   Correcting column spelling errors
+#   Corrects column spelling errors, 'perecent' -> 'percent'
 OWL_MMS = OWL_MMS.rename(columns={'attacker_control_perecent':'attacker_control_percent',
                                   'defender_control_perecent':'defender_control_percent'})
 
 
-#   Converting to datetime dtype
+#   Converts round_start_time to datetime dtype
 OWL_MMS.round_start_time = pd.to_datetime(OWL_MMS.round_start_time, 
                                           errors='coerce')
 OWL_MMS.round_end_time = pd.to_datetime(OWL_MMS.round_end_time, 
                                           errors='coerce')
 
-#   Cleaning data in stage column
+#   Removes excess portions of string in stage and adds year the stage took place
 OWL_MMS.stage = OWL_MMS.stage.str.replace(' - Title Matches', '')
 OWL_MMS.stage = OWL_MMS.stage.str.replace(' Title Matches', '')
 OWL_MMS.stage = OWL_MMS.stage.str.replace('Overwatch League - ', '2018 ')
@@ -29,19 +29,19 @@ OWL_MMS.stage = OWL_MMS.stage.str.replace('Overwatch League ', '')
 OWL_MMS.stage = OWL_MMS.stage.str.replace('OWL ', '')
 
 
-#   Converting columns to int dtype
+#   Converts columns to int dtype
 for col in ['winning_team_final_map_score', 'losing_team_final_map_score', 
-            'attacker_round_end_score', 'defender_round_end_score',]:
+            'attacker_round_end_score', 'defender_round_end_score']:
     OWL_MMS[col] = OWL_MMS[col].astype('int')
     
     
-#   Converting columns to float dtype
+#   Converts columns to float dtype
 for col in ['attacker_payload_distance', 'defender_payload_distance',
             'attacker_time_banked', 'defender_time_banked']:
     OWL_MMS[col] = OWL_MMS[col].astype('float')
 
 
-#   Converting columns to float dtype w/ coercion
+#   Converts columns to float dtype w/ coercion
 OWL_MMS.defender_control_percent = pd.to_numeric(OWL_MMS.defender_control_percent,
                                                  errors='coerce')
 
@@ -49,7 +49,7 @@ OWL_MMS.attacker_control_percent = pd.to_numeric(OWL_MMS.attacker_control_percen
                                                  errors='coerce')
 
 
-#   Converting columns to category dtype
+#   Converts columns to category dtype
 for col in ['stage', 'match_id', 'game_number', 'match_winner', 
             'map_winner', 'map_loser', 'map_name', 'map_round',
             'control_round_name', 'attacker', 'defender', 
@@ -57,14 +57,14 @@ for col in ['stage', 'match_id', 'game_number', 'match_winner',
     OWL_MMS[col] = OWL_MMS[col].astype('category')
     
     
-#   Creating a new column round_length and converting it to string
-#   String format will perserve the data when exported to SQL
+#   Creates a new column round_length and converts it to string
+#   String format needed to perserve the data when exported to SQL
 roundLengthSeries = OWL_MMS.round_end_time - OWL_MMS.round_start_time
 OWL_MMS.insert(2, 'round_length', roundLengthSeries)
 OWL_MMS.round_length = OWL_MMS.round_length.astype('string')
 
 #   Commented out as I've already uploaded a copy to my SQL database
-#   Exporting table to SQL database
+#   Exports table to SQL database
 #conn = sqlite3.connect(database)
 #OWL_MMS.to_sql(name='OWL_Match_Map_Stats', con=conn)
 #conn.close()
