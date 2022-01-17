@@ -1,8 +1,7 @@
 import pandas as pd
 import sqlite3
-import datetime as dt
 
-#   Imports 2018 matches from SQL
+#   Imports OWL 2018 matches from SQL
 database = r'C:\Users\Max\Google Drive\Data\SQL Database\Scrying Pool.db'
 conn = sqlite3.connect(database)
 
