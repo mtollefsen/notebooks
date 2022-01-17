@@ -8,26 +8,18 @@ conn = sqlite3.connect(database)
 OWL_2018 = pd.read_sql('select * from OWL_2018_Raw', con=conn)
 conn.close()
 
-#    Converts the list of columns to categorical data
-for col in ['map_type', 'map_name', 'team', 'hero']:
+#   Converts the list of columns to categorical data
+for col in ['map_type', 'map_name', 'team', 'hero', 'player', 'stat_name']:
     OWL_2018[col] = OWL_2018[col].astype('category')
 
-#   Creates a series for stat_name where it is the categorical data type
+#   Creates a series for stat_name where it is the category dtype
 stat_name_cat = OWL_2018.stat_name.astype('category')
 
-#   Compares the memory usage of stat_name if it were an object or category data type in megabytes
-print( 'object type:   ' + str( OWL_2018.stat_name.memory_usage(deep=True)/1000000 )  + ' MB'  )
-print( 'category type:  ' + str( stat_name_cat.memory_usage(deep=True)/1000000 ) + ' MB')
-
-#    Converting player and stat_name to categorical data
-for col in ['player', 'stat_name']:
-    OWL_2018[col] = OWL_2018[col].astype('category')
-
-#   Creating and inserting the title_match variable which indicates if the match is a title match or not
+#   Creates and inserts the title_match boolean column, indicates if the match is a title match or not
 titleMatchBoolean = OWL_2018.stage.str.contains('Title Matches')
 OWL_2018.insert(3, 'title_match', titleMatchBoolean)
 
-#  Removes unnecessary portions of the string in stage and adds the year the match took place
+#   Removes unnecessary portions of the string in stage and adds the year the match took place
 OWL_2018.stage = OWL_2018.stage.str.replace('Overwatch League -', '2018')
 OWL_2018.stage = OWL_2018.stage.str.replace('Overwatch League Inaugural Season Championship', '2018 Playoffs')
 OWL_2018.stage = OWL_2018.stage.str.replace(' Title Matches', '')
@@ -36,8 +28,10 @@ OWL_2018.stage = OWL_2018.stage.str.replace(' -', '')
 #   Converts stage to category data type
 OWL_2018.stage = OWL_2018.stage.astype('category')
 
+#   Replaces all slashes / with a dash -
 OWL_2018.start_time = OWL_2018.start_time.str.replace('/', '-')
 
+#   Function corrects date formatting
 def formatFix(date: str) -> str:
     #   makes sure all hours are double digit
     if date[-5] == ' ':
@@ -53,15 +47,16 @@ def formatFix(date: str) -> str:
 
     return date
 
-#   Applying the above function to all dates
+#   Applies the above function to all dates
 OWL_2018.start_time = OWL_2018.start_time.apply(formatFix)
 
-#   Converting column to datetime
+#   Converts column to datetime
 OWL_2018.start_time = pd.to_datetime(OWL_2018.start_time, format='%m-%d-%y %H:%M')
 
-#   Applying Capitalize case to map_type, rename_categories maintains category dtype of column
+#   Applies capitalize case to map_type, rename_categories maintains category dtype of column
 OWL_2018.map_type = OWL_2018.map_type.cat.rename_categories(str.capitalize)
 
+#   Converts match_id to int dtype and stat_amount to float dtype
 OWL_2018.match_id = OWL_2018.match_id.astype(int)
 OWL_2018.stat_amount = OWL_2018.stat_amount.astype(float)
 
