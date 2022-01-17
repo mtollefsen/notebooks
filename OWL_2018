@@ -9,7 +9,7 @@ OWL_2018 = pd.read_sql('select * from OWL_2018_Raw', con=conn)
 conn.close()
 
 #   Converts the list of columns to categorical data
-for col in ['map_type', 'map_name', 'team', 'hero', 'player', 'stat_name']:
+for col in ['map_type', 'map_name', 'team', 'hero', 'player', 'stat_name', 'match_id']:
     OWL_2018[col] = OWL_2018[col].astype('category')
 
 #   Creates a series for stat_name where it is the category dtype
@@ -56,8 +56,7 @@ OWL_2018.start_time = pd.to_datetime(OWL_2018.start_time, format='%m-%d-%y %H:%M
 #   Applies capitalize case to map_type, rename_categories maintains category dtype of column
 OWL_2018.map_type = OWL_2018.map_type.cat.rename_categories(str.capitalize)
 
-#   Converts match_id to int dtype and stat_amount to float dtype
-OWL_2018.match_id = OWL_2018.match_id.astype(int)
+#   Converts stat_amount to float dtype
 OWL_2018.stat_amount = OWL_2018.stat_amount.astype(float)
 
 #   Uploads the current dataset to my SQL database,
