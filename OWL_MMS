@@ -1,6 +1,8 @@
 import pandas as pd
 import sqlite3
 
+#   Note: before importing the data I added map_winner manual in excel
+
 #   Imports OWL Match Map Stats dataset from my SQL database
 database = r'C:\Users\Max\Google Drive\Data\SQL Database\Scrying Pool.db'
 conn = sqlite3.connect(database)
