@@ -68,7 +68,6 @@ for col in ['stage', 'match_id', 'game_number', 'match_winner',
     
     
 #   Creates a new column round_length and converts it to string
-#   String format needed to perserve the data when exported to SQL
 roundLengthSeries = OWL_MMS.round_end_time - OWL_MMS.round_start_time
 OWL_MMS.insert(2, 'round_length', roundLengthSeries)
 OWL_MMS.round_length = OWL_MMS.round_length.astype('string')
