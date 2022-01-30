@@ -4,5 +4,5 @@ Repository of code for cleaning datasets before they're uploaded to my SQL datab
 # Data Sources
 
 https://overwatchleague.com/en-us/statslab
-- OWL_2018
+- OWL 2018 Player Statistics
 - OWL_MMS
