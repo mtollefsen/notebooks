@@ -1,5 +1,5 @@
 # Data-Cleanup
-Repository of code for cleaning datasets before they're uploaded to my SQL database. Notebooks are used to show my thought process and reasoning as I'm cleaning the data. A file of just the code is paired with every notebook.
+Repository of code for cleaning datasets before they're uploaded to my SQLite database. Notebooks are used to show my thought process and reasoning as I'm cleaning the data. A file of just the code is paired with every notebook.
 
 # Data Sources
 
