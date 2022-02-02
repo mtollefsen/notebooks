@@ -8,4 +8,4 @@ The original raw data can be found here: https://overwatchleague.com/en-us/stats
 
 
 # After
-![Overwatch League Database organized](https://user-images.githubusercontent.com/97869630/152226373-6d772c72-7387-428f-b2d7-47a697f7fd1b.PNG)
+![Overwatch League Database organized 7](https://user-images.githubusercontent.com/97869630/152229558-2eddd105-a34f-4acd-96fd-890ded996c34.PNG)
