@@ -5,4 +5,4 @@ Repository of code for cleaning datasets before they're uploaded to my SQLite da
 
 https://overwatchleague.com/en-us/statslab
 - OWL 2018 Player Statistics
-- OWL_Match_Map_Stats
+- OWL Match Map Stats
