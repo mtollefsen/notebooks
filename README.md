@@ -1,5 +1,5 @@
 # Overwatch-League-Data-Cleanup
-Repository of code I used to clean and organize data from the Overwatch League using SQLite and Python. There are some Jupyter notebooks to show my thought process and reasoning as I'm cleaning the data.
+Repository of code I used to clean and organize data from the Overwatch League using SQL and Python. There are some Jupyter notebooks to show my thought process and reasoning as I'm cleaning the data.
 
 The original source of the raw data can be found here: https://overwatchleague.com/en-us/statslab
 
