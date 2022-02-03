@@ -26,3 +26,6 @@ CREATE TABLE player_stat_2019 AS
       SELECT * FROM phs_2020_1
    UNION ALL
       SELECT * FROM phs_2020_2
+      
+ ALTER TABLE phs_2021_1
+   RENAME TO player_stat_2021
