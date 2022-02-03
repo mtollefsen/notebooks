@@ -1,4 +1,4 @@
--- All csv's were uploaded to my database with the original names kept
+-- Organizing player stats by year
 
 CREATE TABLE player_stat_2018 AS
       SELECT * FROM phs_2018_stage_1
@@ -22,7 +22,7 @@ CREATE TABLE player_stat_2019 AS
    UNION ALL
       SELECT * FROM phs_2019_playoffs
       
- CREATE TABLE player_stat_2020 AS
+CREATE TABLE player_stat_2020 AS
       SELECT * FROM phs_2020_1
    UNION ALL
       SELECT * FROM phs_2020_2
