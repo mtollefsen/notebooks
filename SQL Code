@@ -1,4 +1,4 @@
--- Organizing player stats by year
+-- Creating tables of player stats for every year
 
 CREATE TABLE player_stat_2018 AS
       SELECT * FROM phs_2018_stage_1
@@ -9,7 +9,7 @@ CREATE TABLE player_stat_2018 AS
    UNION ALL
       SELECT * FROM phs_2018_stage_4
    UNION ALL
-      SELECT * FROM phs_2018_playoffs
+      SELECT * FROM phs_2018_playoffs;
 
 CREATE TABLE player_stat_2019 AS
       SELECT * FROM phs_2019_stage_1
@@ -20,12 +20,38 @@ CREATE TABLE player_stat_2019 AS
    UNION ALL
       SELECT * FROM phs_2019_stage_4
    UNION ALL
-      SELECT * FROM phs_2019_playoffs
+      SELECT * FROM phs_2019_playoffs;
       
 CREATE TABLE player_stat_2020 AS
       SELECT * FROM phs_2020_1
    UNION ALL
-      SELECT * FROM phs_2020_2
+      SELECT * FROM phs_2020_2;
       
  ALTER TABLE phs_2021_1
-   RENAME TO player_stat_2021
+   RENAME TO player_stat_2021;
+
+/* 
+Cleaning player_stat_2018
+If you would like to insert a boolean column that captures whether the match was a title match or not
+uncomment the below code
+*/
+
+ /*
+ ALTER TABLE player_stat_2018
+  ADD COLUMN title_match AS (CASE
+                                WHEN stage LIKE '%Title Matches' THEN 1
+                                ELSE 0
+                             END);
+*/
+
+-- Formatting the stage and adding the year
+      UPDATE player_stat_2018
+         SET stage = REPLACE(stage, 'Overwatch League Inaugural Season Championship', '2018 Playoffs');
+      UPDATE player_stat_2018
+         SET stage = REPLACE(stage, 'Overwatch League -', '2018');
+      UPDATE player_stat_2018
+         SET stage = REPLACE(stage, ' Title Matches', '');
+      UPDATE player_stat_2018
+         SET stage = REPLACE(stage, ' -', '');
+         
+         
