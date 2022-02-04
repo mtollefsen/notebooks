@@ -1,4 +1,7 @@
--- Creating a table of player stats for every year
+/*
+Creating a table of player stats for every year
+*/
+
 CREATE TABLE player_stat_2018 AS
       SELECT * FROM phs_2018_stage_1
    UNION ALL
@@ -31,14 +34,34 @@ CREATE TABLE player_stat_2020 AS
 
 /* 
 Cleaning player_stat_2018
-If you would like to insert a boolean column that captures 
-whether the match was a title match or not uncomment the below code
 */
 
+-- Creating a consistent format with start_time
+      UPDATE player_stat_2018
+         SET start_time = REPLACE(start_time, '/', '-');
+
+-- Ensure all month fields are double digit
+      UPDATE player_stat_2018
+         SET start_time = (CASE
+                             WHEN SUBSTRING(start_time, 2, 1) = '-'
+                             THEN '0' || start_time
+                             ELSE start_time
+                           END);
+                           
+-- Ensure all day fields are double digit
+      UPDATE player_stat_2018
+         SET start_time = (CASE
+                       WHEN SUBSTRING(start_time, 5, 1) = '-'
+                       THEN SUBSTRING(start_time, 1, 3) || '0' || SUBSTRING(start_time, 4)
+                       ELSE start_time
+                     END);
+
+-- Uncomment if you would like a boolean column that indiciates if the match was a title match
  /*
  ALTER TABLE player_stat_2018
   ADD COLUMN title_match AS (CASE
-                                WHEN stage LIKE '%Title Matches' THEN 1
+                                WHEN stage LIKE '%Title Matches' 
+                                THEN 1
                                 ELSE 0
                              END);
 */
