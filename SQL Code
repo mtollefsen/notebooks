@@ -1,5 +1,4 @@
--- Creating tables of player stats for every year
-
+-- Creating a table of player stats for every year
 CREATE TABLE player_stat_2018 AS
       SELECT * FROM phs_2018_stage_1
    UNION ALL
@@ -32,8 +31,8 @@ CREATE TABLE player_stat_2020 AS
 
 /* 
 Cleaning player_stat_2018
-If you would like to insert a boolean column that captures whether the match was a title match or not
-uncomment the below code
+If you would like to insert a boolean column that captures 
+whether the match was a title match or not uncomment the below code
 */
 
  /*
@@ -44,14 +43,21 @@ uncomment the below code
                              END);
 */
 
--- Formatting the stage and adding the year
-      UPDATE player_stat_2018
-         SET stage = REPLACE(stage, 'Overwatch League Inaugural Season Championship', '2018 Playoffs');
-      UPDATE player_stat_2018
-         SET stage = REPLACE(stage, 'Overwatch League -', '2018');
-      UPDATE player_stat_2018
-         SET stage = REPLACE(stage, ' Title Matches', '');
-      UPDATE player_stat_2018
-         SET stage = REPLACE(stage, ' -', '');
+-- Formatting stage and adding the year
+       UPDATE player_stat_2018
+          SET stage = REPLACE(stage, 'Overwatch League Inaugural Season Championship', '2018 Playoffs');
+       UPDATE player_stat_2018
+          SET stage = REPLACE(stage, 'Overwatch League -', '2018');
+       UPDATE player_stat_2018
+          SET stage = REPLACE(stage, ' Title Matches', '');
+       UPDATE player_stat_2018
+          SET stage = REPLACE(stage, ' -', '');
          
-         
+-- Formatting map_type to proper case
+       UPDATE player_stat_2018
+          SET map_type = SUBSTRING(map_type, 1, 1) || LOWER(SUBSTRING(map_type, 2));
+
+-- Renaming map_type to game_mode
+  ALTER TABLE player_stat_2018
+RENAME COLUMN map_type TO game_mode;
+
