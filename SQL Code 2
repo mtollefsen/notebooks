@@ -1,0 +1,34 @@
+
+-- Merging all player stats into one table
+CREATE TABLE player_stat AS
+      SELECT * FROM phs_2018_stage_1
+   UNION ALL
+      SELECT * FROM phs_2018_stage_2
+   UNION ALL
+      SELECT * FROM phs_2018_stage_3
+   UNION ALL
+      SELECT * FROM phs_2018_stage_4
+   UNION ALL
+      SELECT * FROM phs_2018_playoffs
+   UNION ALL
+      SELECT * FROM phs_2019_stage_1
+   UNION ALL
+      SELECT * FROM phs_2019_stage_2
+   UNION ALL
+      SELECT * FROM phs_2019_stage_3
+   UNION ALL
+      SELECT * FROM phs_2019_stage_4
+   UNION ALL
+      SELECT * FROM phs_2019_playoffs
+   UNION ALL
+      SELECT * FROM phs_2020_1
+   UNION ALL
+      SELECT * FROM phs_2020_2
+   UNION ALL
+      SELECT * FROM phs_2021_1
+
+-- Creating consistent "YYYY-MM-DD hh:mm" format in start_time
+UPDATE player_stat
+         SET start_time = '0' || start_time
+       WHERE SUBSTRING(start_time, 1, 3) <> '202' AND
+             SUBSTRING(start_time, 2, 1) = '-';
