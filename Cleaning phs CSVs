@@ -82,4 +82,11 @@
         UPDATE player_stat
            SET stage = REPLACE(stage, ' Title Matches', '');
          
-         
+        UPDATE player_stat
+           SET stage = REPLACE(stage, 'Overwatch League ', '')
+         WHERE SUBSTR(start_time, 1, 4) = '2019';
+
+        UPDATE player_stat
+           SET stage = '2019 ' || stage
+         WHERE SUBSTR(start_time, 1, 4) = '2019' AND
+               stage LIKE '%Stage%';
