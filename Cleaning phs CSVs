@@ -133,3 +133,8 @@ UPDATE player_stat
 */
 
 
+-- Seperating All-Star events into its own table
+        CREATE TABLE player_stat_allstar AS
+        SELECT * FROM player_stat
+         WHERE stage IN ('2020 APAC All-Stars', '2020 NA All-Stars');
+
