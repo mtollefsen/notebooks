@@ -90,3 +90,17 @@
            SET stage = '2019 ' || stage
          WHERE SUBSTR(start_time, 1, 4) = '2019' AND
                stage LIKE '%Stage%';
+               
+        UPDATE player_stat
+           SET stage = REPLACE(stage, 'OWL ', '');
+           
+        UPDATE player_stat
+           SET stage = REPLACE(stage, 'North America', 'NA');
+           
+        UPDATE player_stat
+           SET stage = '2020 ' || stage
+         WHERE SUBSTRING(stage, 1, 1) <> '2';
+         
+        UPDATE player_stat
+           SET stage = stage || ' Stage'
+         WHERE SUBSTRING(stage, 1, 4) = '2021';
