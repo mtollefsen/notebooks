@@ -125,13 +125,11 @@
 /*
 UPDATE player_stat
    SET hero = 'Lucio'
- WHERE hero = 'LÃºcio' AND
-       hero - 'Lúcio';
+ WHERE hero IN ('LÃºcio', 'Lúcio');
 
 UPDATE player_stat
    SET hero = 'Torbjorn'
- WHERE hero = 'TorbjÃ¶rn' AND
-       hero - 'Torbjörn';
+ WHERE hero IN ('TorbjÃ¶rn', 'Torbjörn');
 */
 
 
