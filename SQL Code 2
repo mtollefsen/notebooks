@@ -43,7 +43,19 @@
         UPDATE player_stat
            SET start_time = SUBSTR(start_time, 1, 11) || '0' || SUBSTR(start_time, 12)
          WHERE SUBSTR(start_time, 13, 1) = ':';
-       
+
+
+-- Optional code to add boolean column "title_match"
+-- which indicates if the match was a title match or not
+-- NOTE: this only captures title matches for the 2018 and 2019 season
+/*
+   ALTER TABLE player_stat
+    ADD COLUMN title_match AS (CASE
+                                 WHEN stage LIKE '%Title Match%' THEN 1
+                                 ELSE 0
+                               END);
+*/
+
        
 -- Setting map_type to proper case
         UPDATE player_stat
@@ -52,3 +64,22 @@
 -- Changing name of map_type to game_mode
    ALTER TABLE player_stat
  RENAME COLUMN map_type TO game_mode;
+
+
+-- Formatting the values in stage
+        UPDATE player_stat
+           SET stage = REPLACE(stage, 'Overwatch League Inaugural Season Championship', '2018 Playoffs')
+         WHERE SUBSTR(start_time, 1, 4) = '2018';
+ 
+        UPDATE player_stat
+           SET stage = REPLACE(stage, 'Overwatch League -', '2018')
+         WHERE SUBSTR(start_time, 1, 4) = '2018';
+         
+        UPDATE player_stat
+           SET stage = REPLACE(stage, ' - Title Matches', '')
+         WHERE SUBSTR(start_time, 1, 4) = '2018';
+         
+        UPDATE player_stat
+           SET stage = REPLACE(stage, ' Title Matches', '');
+         
+         
