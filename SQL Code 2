@@ -44,6 +44,7 @@
            SET start_time = SUBSTR(start_time, 1, 11) || '0' || SUBSTR(start_time, 12)
          WHERE SUBSTR(start_time, 13, 1) = ':';
        
+       
 -- Setting map_type to proper case
         UPDATE player_stat
            SET map_type = SUBSTR(map_type, 1, 1) || LOWER(SUBSTR(map_type, 2));
