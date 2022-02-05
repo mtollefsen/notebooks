@@ -105,8 +105,33 @@
            SET stage = stage || ' Stage'
          WHERE SUBSTRING(stage, 1, 4) = '2021';
          
--- Despite being originally name '2019 Post-Season'
--- only playoff matches were captured, no All Stars matches or others
+-- Despite being originally named '2019 Post-Season'
+-- only playoff matches were captured so renaming the stage accordingly
         UPDATE player_stat
            SET stage = '2019 Playoffs'
          WHERE stage = '2019 Post-Season'
+         
+         
+-- Cleaning hero column  
+        UPDATE player_stat
+           SET hero = 'Lúcio'
+         WHERE hero = 'LÃºcio';
+         
+        UPDATE player_stat
+           SET hero = 'Torbjörn'
+         WHERE hero = 'TorbjÃ¶rn';
+         
+-- If you don't want international characters in your dataset use the following code instead
+/*
+UPDATE player_stat
+   SET hero = 'Lucio'
+ WHERE hero = 'LÃºcio' AND
+       hero - 'Lúcio';
+
+UPDATE player_stat
+   SET hero = 'Torbjorn'
+ WHERE hero = 'TorbjÃ¶rn' AND
+       hero - 'Torbjörn';
+*/
+
+
