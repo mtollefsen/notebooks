@@ -104,3 +104,9 @@
         UPDATE player_stat
            SET stage = stage || ' Stage'
          WHERE SUBSTRING(stage, 1, 4) = '2021';
+         
+-- Despite being originally name '2019 Post-Season'
+-- only playoff matches were captured, no All Stars matches or others
+        UPDATE player_stat
+           SET stage = '2019 Playoffs'
+         WHERE stage = '2019 Post-Season'
