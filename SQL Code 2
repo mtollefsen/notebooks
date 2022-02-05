@@ -1,46 +1,53 @@
 
 -- Merging all player stats into one table
-CREATE TABLE player_stat AS
-      SELECT * FROM phs_2018_stage_1
-   UNION ALL
-      SELECT * FROM phs_2018_stage_2
-   UNION ALL
-      SELECT * FROM phs_2018_stage_3
-   UNION ALL
-      SELECT * FROM phs_2018_stage_4
-   UNION ALL
-      SELECT * FROM phs_2018_playoffs
-   UNION ALL
-      SELECT * FROM phs_2019_stage_1
-   UNION ALL
-      SELECT * FROM phs_2019_stage_2
-   UNION ALL
-      SELECT * FROM phs_2019_stage_3
-   UNION ALL
-      SELECT * FROM phs_2019_stage_4
-   UNION ALL
-      SELECT * FROM phs_2019_playoffs
-   UNION ALL
-      SELECT * FROM phs_2020_1
-   UNION ALL
-      SELECT * FROM phs_2020_2
-   UNION ALL
-      SELECT * FROM phs_2021_1
+  CREATE TABLE player_stat AS
+        SELECT * FROM phs_2018_stage_1
+     UNION ALL
+        SELECT * FROM phs_2018_stage_2
+     UNION ALL
+        SELECT * FROM phs_2018_stage_3
+     UNION ALL
+        SELECT * FROM phs_2018_stage_4
+     UNION ALL
+        SELECT * FROM phs_2018_playoffs
+     UNION ALL
+        SELECT * FROM phs_2019_stage_1
+     UNION ALL
+        SELECT * FROM phs_2019_stage_2
+     UNION ALL
+        SELECT * FROM phs_2019_stage_3
+     UNION ALL
+        SELECT * FROM phs_2019_stage_4
+     UNION ALL
+        SELECT * FROM phs_2019_playoffs
+     UNION ALL
+        SELECT * FROM phs_2020_1
+     UNION ALL
+        SELECT * FROM phs_2020_2
+     UNION ALL
+        SELECT * FROM phs_2021_1
 
 
 -- Ensures all day fields in start_time are double digit
-      UPDATE player_stat
-         SET start_time = SUBSTR(start_time, 1, 3) || '0' || SUBSTR(start_time, 4)
-       WHERE SUBSTR(start_time, 5, 1) = '/';
+        UPDATE player_stat
+           SET start_time = SUBSTR(start_time, 1, 3) || '0' || SUBSTR(start_time, 4)
+         WHERE SUBSTR(start_time, 5, 1) = '/';
 
 -- Ensures all start_time dates follow "YYYY-MM-DD hh:mm" format
-      UPDATE player_stat
-         SET start_time = SUBSTR(start_time, 7, 4) || '-' || SUBSTR(start_time, 1, 2) || '-' ||
+        UPDATE player_stat
+           SET start_time = SUBSTR(start_time, 7, 4) || '-' || SUBSTR(start_time, 1, 2) || '-' ||
                           SUBSTR(start_time, 4, 2) ||  SUBSTR(start_time, 11)
-       WHERE SUBSTR(start_time, 3, 1) = '/';
+         WHERE SUBSTR(start_time, 3, 1) = '/';
        
 -- Ensures all hour fields in start_time are double digit
-      UPDATE player_stat
-         SET start_time = SUBSTR(start_time, 1, 11) || '0' || SUBSTR(start_time, 12)
-       WHERE SUBSTR(start_time, 13, 1) = ':';
+        UPDATE player_stat
+           SET start_time = SUBSTR(start_time, 1, 11) || '0' || SUBSTR(start_time, 12)
+         WHERE SUBSTR(start_time, 13, 1) = ':';
        
+-- Setting map_type to proper case
+        UPDATE player_stat
+           SET map_type = SUBSTR(map_type, 1, 1) || LOWER(SUBSTR(map_type, 2));
+           
+-- Changing name of map_type to game_mode
+   ALTER TABLE player_stat
+ RENAME COLUMN map_type TO game_mode;
