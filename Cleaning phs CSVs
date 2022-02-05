@@ -49,11 +49,11 @@
 -- which indicates if the match was a title match or not
 -- NOTE: this only captures title matches for the 2018 and 2019 season
 /*
-   ALTER TABLE player_stat
-    ADD COLUMN title_match AS (CASE
-                                 WHEN stage LIKE '%Title Match%' THEN 1
-                                 ELSE 0
-                               END);
+ALTER TABLE player_stat
+ ADD COLUMN title_match AS (CASE
+                              WHEN stage LIKE '%Title Match%' THEN 1
+                              ELSE 0
+                            END);
 */
 
        
@@ -133,8 +133,12 @@ UPDATE player_stat
 */
 
 
--- Seperating All-Star events into its own table
+-- Seperating All-Star events into its own table "player_stat_allstar"
         CREATE TABLE player_stat_allstar AS
         SELECT * FROM player_stat
          WHERE stage IN ('2020 APAC All-Stars', '2020 NA All-Stars');
 
+-- Deleting rows that were just moved to "player_stat_allstar"
+        DELETE FROM player_stat
+         WHERE stage IN ('2020 APAC All-Stars', '2020 NA All-Stars');
+         
