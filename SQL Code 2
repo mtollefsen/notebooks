@@ -25,7 +25,7 @@
      UNION ALL
         SELECT * FROM phs_2020_2
      UNION ALL
-        SELECT * FROM phs_2021_1
+        SELECT * FROM phs_2021_1;
 
 
 -- Ensures all day fields in start_time are double digit
