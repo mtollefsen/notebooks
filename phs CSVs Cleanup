@@ -1,5 +1,5 @@
 
--- Merging all player stats into one table
+-- Merges all player stats into one table
   CREATE TABLE player_stat AS
         SELECT * FROM phs_2018_stage_1
      UNION ALL
@@ -57,16 +57,16 @@ ALTER TABLE player_stat
 */
 
        
--- Setting map_type to proper case
+-- Sets map_type to proper case
         UPDATE player_stat
            SET map_type = SUBSTR(map_type, 1, 1) || LOWER(SUBSTR(map_type, 2));
            
--- Changing name of map_type to game_mode
+-- Changes name of map_type to game_mode
    ALTER TABLE player_stat
  RENAME COLUMN map_type TO game_mode;
 
 
--- Formatting the values in stage
+-- Formats the values in stage
         UPDATE player_stat
            SET stage = REPLACE(stage, 'Overwatch League Inaugural Season Championship', '2018 Playoffs')
          WHERE SUBSTR(start_time, 1, 4) = '2018';
@@ -105,14 +105,14 @@ ALTER TABLE player_stat
            SET stage = stage || ' Stage'
          WHERE SUBSTRING(stage, 1, 4) = '2021';
          
--- Despite being originally named '2019 Post-Season'
--- only playoff matches were captured so renaming the stage accordingly
+-- Renames "2019 Post-Season" to "2019 Playoffs"
+-- Despite the original name, only playoff matches are included in this stage
         UPDATE player_stat
            SET stage = '2019 Playoffs'
          WHERE stage = '2019 Post-Season'
          
          
--- Cleaning hero column  
+-- Cleans hero column  
         UPDATE player_stat
            SET hero = 'Lúcio'
          WHERE hero = 'LÃºcio';
@@ -133,12 +133,12 @@ UPDATE player_stat
 */
 
 
--- Seperating All-Star events into its own table "player_stat_allstar"
+-- Separates All-Star events into its own table "player_stat_allstar"
         CREATE TABLE player_stat_allstar AS
         SELECT * FROM player_stat
          WHERE stage IN ('2020 APAC All-Stars', '2020 NA All-Stars');
 
--- Deleting rows that were just moved to "player_stat_allstar"
+-- Deletes rows that were just moved to "player_stat_allstar"
         DELETE FROM player_stat
          WHERE stage IN ('2020 APAC All-Stars', '2020 NA All-Stars');
          
