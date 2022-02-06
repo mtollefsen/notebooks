@@ -16,7 +16,7 @@ The original source of the raw data can be found here: https://overwatchleague.c
 
 ## Takeaways
 - https://liquipedia.net/overwatch/ was a great resource to reference
-- A few expressions I leaned on to help troubleshoot the dataset include: 
+- Expressions that I leaned on to help troubleshoot the dataset include: 
   -  IS / IS NOT NULL
   -  DISTINCT
   -  COUNT(column) <> COUNT(DISTINCT(column))
