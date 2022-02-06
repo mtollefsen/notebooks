@@ -14,7 +14,8 @@ The original source of the raw data can be found here: https://overwatchleague.c
 ![Overwatch League Database organized](https://user-images.githubusercontent.com/97869630/152306351-3733b08d-6449-48ed-9d1a-a62543a7ee78.PNG)
 
 ## Takeaways
-- I improved my cleaning skills, a few expressions that helped with determining problems in the dataset include: 
+- https://liquipedia.net/overwatch/ was a great resource to reference
+- A few expressions I leaned on to help troubleshoot the dataset include: 
   -  IS / IS NOT NULL
   -  DISTINCT
   -  COUNT(column) <> COUNT(DISTINCT(column))
