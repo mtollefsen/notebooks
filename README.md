@@ -14,11 +14,13 @@ The original source of the raw data can be found here: https://overwatchleague.c
 ## After
 ![Overwatch League Database organized](https://user-images.githubusercontent.com/97869630/152306351-3733b08d-6449-48ed-9d1a-a62543a7ee78.PNG)
 
-## Takeaways
-- https://liquipedia.net/overwatch/ was a great resource to reference
+## What I Learned
+- https://liquipedia.net/overwatch/ was a great resource in helping understand and validate certain parts of the data
 - Expressions that I leaned on to help troubleshoot the dataset include: 
   -  IS / IS NOT NULL
   -  DISTINCT
   -  COUNT(column) <> COUNT(DISTINCT(column))
 
 ## Plans for Improvement
+- Study more set theroy
+- Determine a good primary key for 
