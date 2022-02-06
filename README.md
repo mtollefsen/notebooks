@@ -18,11 +18,12 @@ The original source of the raw data can be found here: https://overwatchleague.c
 - https://liquipedia.net/overwatch/ was a great resource in helping understand and validate certain parts of the data
 - Database normalization and the normal forms
 - Sargable queries
-- Expressions that I leaned on to help troubleshoot the dataset include: 
+- Expressions to help troubleshoot the dataset: 
   -  IS / IS NOT NULL
   -  DISTINCT
   -  COUNT(column) <> COUNT(DISTINCT(column))
 
 ## Plans for Improvement
-- Study more set theory
 - Determine a good primary key for player_stat
+- Study more set theory
+
