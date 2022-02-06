@@ -1,0 +1,15 @@
+
+-- Correct column misspellings
+      ALTER TABLE match_map_stats
+           RENAME attacker_control_perecent TO attacker_control_percent;
+           
+      ALTER TABLE match_map_stats
+           RENAME defender_control_perecent TO defender_control_percent;
+
+-- Create match_loser column
+      ALTER TABLE match_map_stats
+       ADD COLUMN match_loser AS (CASE
+                                     WHEN match_winner = team_one_name THEN team_two_name
+                                     ELSE team_one_name
+                                  END);
+                                   
