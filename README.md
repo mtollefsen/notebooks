@@ -16,7 +16,7 @@ The original source of the raw data can be found here: https://overwatchleague.c
 - Bolded are the primary keys for each table
 
 ## What I Learned
-- https://liquipedia.net/overwatch/ was a great resource in helping understand and validate certain parts of the data
+- https://liquipedia.net/overwatch/ is a great resource to help with Overwatch League data
 - Database normalization and the normal forms
 - Sargable queries
 - Expressions that were helpful in troubleshooting the dataset: 
