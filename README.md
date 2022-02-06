@@ -20,3 +20,5 @@ The original source of the raw data can be found here: https://overwatchleague.c
   -  IS / IS NOT NULL
   -  DISTINCT
   -  COUNT(column) <> COUNT(DISTINCT(column))
+
+## Plans for Improvement
