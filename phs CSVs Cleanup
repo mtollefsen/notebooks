@@ -1,3 +1,17 @@
+/*
+All phs CSVs have the following columns:
+
+start_time - date and time the match started
+match_id - unique identifier for every match
+stage - stage of the season
+map_type - the map's game mode
+map_name - name of the map
+player - player name (not the player's real name)
+team - team the player is on
+stat_name - name of the statistic being measured, many are specific to the hero
+hero - hero the player played
+stat_amount - measure of the stat_name
+*/
 
 -- Merges all player stats into one table
   CREATE TABLE player_stat AS
