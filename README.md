@@ -17,6 +17,7 @@ The original source of the raw data can be found here: https://overwatchleague.c
 
 ## What I Learned
 - https://liquipedia.net/overwatch/ is a great resource to help with Overwatch League data
+- You can watch the match by going to https://overwatchleague.com/en-us/match/match_id where match_id is the match_id number you want to watch
 - Database normalization and the normal forms
 - Sargable queries
 - Expressions that were helpful in troubleshooting the dataset: 
