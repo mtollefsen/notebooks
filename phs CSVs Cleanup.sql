@@ -120,7 +120,7 @@ ALTER TABLE player_stat
          WHERE SUBSTRING(stage, 1, 4) = '2021';
          
 -- Renames "2019 Post-Season" to "2019 Playoffs"
--- Despite the original name, only playoff matches are included in this stage
+-- Despite the name "Post-Season", only playoff matches were included in this stage
         UPDATE player_stat
            SET stage = '2019 Playoffs'
          WHERE stage = '2019 Post-Season'
