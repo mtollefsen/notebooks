@@ -23,7 +23,7 @@ The original source of the raw data can be found here: https://overwatchleague.c
 - Expressions that were helpful in troubleshooting the dataset: 
   -  IS / IS NOT NULL
   -  DISTINCT
-  -  COUNT(column) <> COUNT(DISTINCT(column))
+  -  COUNT(column) <> COUNT(DISTINCT column)
 
 ## Plans for Improvement
 - Determine a good primary key for player_stat
