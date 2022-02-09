@@ -5,7 +5,8 @@ The original source of the raw data can be found here: https://overwatchleague.c
 
 ## Before
 ![Overwatch League Data raw](https://user-images.githubusercontent.com/97869630/152226888-bdc4aa8b-30c1-4126-bbae-a083f2b9c8ba.PNG)
-- 14 CSV files
+- 14 separate CSV files
+- X rows of data
 - Spelling errors
 - Inconsistent formatting
 - Missing values
