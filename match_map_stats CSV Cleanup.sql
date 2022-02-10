@@ -58,3 +58,8 @@
 -- Deletes a duplicate row
       DELETE FROM match_map_stats
             WHERE ROWID = 9943;
+            
+-- Corrects game_number for match 10280
+           UPDATE match_map_stats
+              SET game_number = 4
+            WHERE ROWID IN (664, 665);
