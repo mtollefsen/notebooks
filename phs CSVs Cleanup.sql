@@ -152,7 +152,7 @@ UPDATE player_stat
         SELECT * FROM player_stat
          WHERE stage IN ('2020 APAC All-Stars', '2020 NA All-Stars');
 
--- Deletes rows that were just moved to "player_stat_allstar"
+-- Deletes the rows that were used to make "player_stat_allstar"
         DELETE FROM player_stat
          WHERE stage IN ('2020 APAC All-Stars', '2020 NA All-Stars');
          
