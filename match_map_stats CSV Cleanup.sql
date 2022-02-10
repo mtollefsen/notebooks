@@ -54,3 +54,7 @@
 -- Deletes a duplicate row with incorrect round_start_time            
       DELETE FROM match_map_stats
             WHERE ROWID = 7937;
+
+-- Deletes a duplicate row
+      DELETE FROM match_map_stats
+            WHERE ROWID = 9943;
