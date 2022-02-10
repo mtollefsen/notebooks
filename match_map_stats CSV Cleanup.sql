@@ -45,4 +45,8 @@
  
 -- Deletes a duplicate row with incorrect round_start_time
       DELETE FROM match_map_stats
-            WHERE ROWID = 4066
+            WHERE ROWID = 4066;
+                   
+-- Deletes a duplicate row
+      DELETE FROM match_map_stats
+            WHERE ROWID = 7343;
