@@ -36,7 +36,7 @@
               SET map_subsection  = "MEKA Base"
             WHERE ROWID = 4065;
 
--- Creates a best estimate of round_start_time for match 21352, game 1, round 1
+-- Creates an estimate (based off game footage) of round_start_time for match 21352, game 1, round 1
            UPDATE match_map_stats
               SET round_start_time = (SELECT datetime((strftime("%s", round_end_time) - 215), "unixepoch")
                                         FROM match_map_stats
