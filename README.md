@@ -23,7 +23,7 @@ The original source of the raw data can be found here: https://overwatchleague.c
 - Expressions that were helpful in troubleshooting the dataset: 
   -  IS / IS NOT NULL
   -  DISTINCT
-  -  GROUP BY
+  -  GROUP BY column<br>
      HAVING COUNT(column) <> COUNT(DISTINCT column)
 
 ## Plans for Improvement
