@@ -75,7 +75,7 @@ ALTER TABLE player_stat
         UPDATE player_stat
            SET map_type = SUBSTR(map_type, 1, 1) || LOWER(SUBSTR(map_type, 2));
            
--- Changes name of map_type to game_mode
+-- Changes name of "map_type" to "game_mode"
    ALTER TABLE player_stat
  RENAME COLUMN map_type TO game_mode;
 
