@@ -11,6 +11,7 @@
       ALTER TABLE match_map_stats
        ADD COLUMN match_loser;
 
+
 -- Populates "match_loser" column
            UPDATE match_map_stats
               SET match_loser = (CASE
@@ -18,6 +19,7 @@
                                      THEN team_two_name
                                    ELSE team_one_name
                                  END);
+
 
 -- Removes columns "team_one_name" and "team_two_name"
       ALTER TABLE match_map_stats
@@ -36,6 +38,7 @@
            UPDATE match_map_stats
               SET map_subsection  = "MEKA Base"
             WHERE ROWID = 4065;
+
 
 -- Creates an estimate (based off game footage) of round_start_time for match 21352, game 1, round 1
            UPDATE match_map_stats
@@ -100,17 +103,21 @@
               FROM map_round_new mrn
              WHERE mrn.round_start_time = match_map_stats.round_start_time;
              
+	     
 -- Renames "map_round" to "round_number"
        ALTER TABLE match_map_stats
 	    RENAME map_round TO round_number;
+	 
 	 
 -- Adds column "round_length"
        ALTER TABLE match_map_stats
         ADD COLUMN round_length;
 	
+	
 -- Populates column "round_length"
             UPDATE match_map_stats
                SET round_length = (strftime("%s", round_end_time) - strftime("%s", round_start_time));
+	       
 	       
 -- Each query corrects round_length
 -- NOTE: incorrect round_length times are
@@ -122,7 +129,3 @@
 	    UPDATE match_map_stats
                SET round_length = 420
              WHERE ROWID = 7092;
-	    
-	    
-	     
-	  
