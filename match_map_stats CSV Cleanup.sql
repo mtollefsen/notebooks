@@ -98,6 +98,7 @@
              WHERE mrn.round_start_time = match_map_stats.round_start_time;
              
 -- Renames "map_round" to "round_number"
-
-              
-
+       ALTER TABLE match_map_stats
+	    RENAME map_round TO round_number;
+	    
+	    
