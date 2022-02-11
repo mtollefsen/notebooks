@@ -17,9 +17,9 @@ The original source of the raw data can be found here: https://overwatchleague.c
 - Added primary keys (bolded)
 - Created columns
 
-## What I Learned
-- Database normalization and the normal forms
-- Sargable queries
+## What I Used
+- Database normalization
+- Window and aggregate functions
 - Expressions that were helpful in troubleshooting the dataset: 
   -  IS / IS NOT NULL
   -  DISTINCT
