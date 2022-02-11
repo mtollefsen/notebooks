@@ -69,11 +69,34 @@
             WHERE ROWID IN (5364, 5365);
             
             
--- Corrects map_round numbers throughout the entire dataset
-      ALTER TABLE match_map_stats
-       ADD COLUMN temp_rowid;
+-- Corrects the round numbers in "map_round"
+             WITH
+ map_round_lag AS (
+           SELECT round_start_time,
+                  LAG(map_round, 1, "0") OVER() map_round_lag
+             FROM match_map_stats
+                  ),
+    map_round_new AS (
+           SELECT mrl.round_start_time,
+	            (CASE
+		         WHEN mms.map_round = "1"
+			     THEN 1
+		         WHEN mms.map_round = "5" AND mrl.map_round_lag = "3"
+		           THEN 3
+		         WHEN mms.map_round = "7" AND mrl.map_round_lag = "5"
+		           THEN 4
+	               ELSE mrl.map_round_lag + 1
+		       END) round_number
+              FROM match_map_stats mms
+              JOIN map_round_lag mrl ON mrl.round_start_time = mms.round_start_time
+                   )
+				   
+            UPDATE match_map_stats
+               SET map_round = mrn.round_number
+              FROM map_round_new mrn
+             WHERE mrn.round_start_time = match_map_stats.round_start_time;
+             
+-- Renames "map_round" to "round_number"
 
-           UPDATE match_map_stats
-              SET temp_rowid = ROWID;
               
 
