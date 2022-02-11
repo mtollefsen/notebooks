@@ -14,9 +14,10 @@
 -- Populates "match_loser" column
            UPDATE match_map_stats
               SET match_loser = (CASE
-                                     WHEN match_winner = team_one_name THEN team_two_name
-                                     ELSE team_one_name
-                                  END);
+                                   WHEN match_winner = team_one_name 
+                                     THEN team_two_name
+                                   ELSE team_one_name
+                                 END);
 
 -- Removes columns "team_one_name" and "team_two_name"
       ALTER TABLE match_map_stats
@@ -44,29 +45,35 @@
             WHERE ROWID = 4065;
  
  
--- Deletes a duplicate row with incorrect round_start_time
+-- Each one deletes a duplicate row (some with incorrect round_start_time)
       DELETE FROM match_map_stats
             WHERE ROWID = 4066;
                    
--- Deletes a duplicate row
       DELETE FROM match_map_stats
             WHERE ROWID = 7343;
-            
--- Deletes a duplicate row with incorrect round_start_time            
+                      
       DELETE FROM match_map_stats
             WHERE ROWID = 7937;
 
--- Deletes a duplicate row
       DELETE FROM match_map_stats
             WHERE ROWID = 9943;
           
           
--- Corrects game_number for match 10280
+-- Each one corrects a game_number
            UPDATE match_map_stats
               SET game_number = "4"
             WHERE ROWID IN (664, 665);
 
--- Corrects game_number for match 21433
            UPDATE match_map_stats
               SET game_number = "4"
             WHERE ROWID IN (5364, 5365);
+            
+            
+-- Corrects map_round numbers throughout the entire dataset
+      ALTER TABLE match_map_stats
+       ADD COLUMN temp_rowid;
+
+           UPDATE match_map_stats
+              SET temp_rowid = ROWID;
+              
+
