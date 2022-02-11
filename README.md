@@ -9,6 +9,7 @@ The original source of the raw data can be found here: https://overwatchleague.c
 - 4,958,301 rows of data
 - Spelling errors
 - Inconsistent formatting
+- Incorrect values
 - Missing values
 - Duplicate rows
 
