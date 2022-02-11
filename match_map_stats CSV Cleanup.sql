@@ -103,5 +103,26 @@
 -- Renames "map_round" to "round_number"
        ALTER TABLE match_map_stats
 	    RENAME map_round TO round_number;
+	 
+-- Adds column "round_length"
+       ALTER TABLE match_map_stats
+        ADD COLUMN round_length;
+	
+-- Populates column "round_length"
+            UPDATE match_map_stats
+               SET round_length = (strftime("%s", round_end_time) - strftime("%s", round_start_time));
+	       
+-- Each query corrects round_length
+-- NOTE: incorrect round_length times are
+-- primarily due to long pauses midmatch
+            UPDATE match_map_stats
+               SET round_length = 443
+             WHERE ROWID = 8033;
+	     
+	    UPDATE match_map_stats
+               SET round_length = 420
+             WHERE ROWID = 7092;
 	    
 	    
+	     
+	  
