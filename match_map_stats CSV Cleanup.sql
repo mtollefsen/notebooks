@@ -45,7 +45,7 @@
             WHERE ROWID = 4065;
  
  
--- Each one deletes a duplicate row (some with incorrect round_start_time)
+-- Each query deletes a duplicate row (some with incorrect round_start_time)
       DELETE FROM match_map_stats
             WHERE ROWID = 4066;
                    
@@ -59,7 +59,7 @@
             WHERE ROWID = 9943;
           
           
--- Each one corrects a game_number
+-- Each query corrects a game_number
            UPDATE match_map_stats
               SET game_number = "4"
             WHERE ROWID IN (664, 665);
@@ -70,6 +70,9 @@
             
             
 -- Corrects the round numbers in "map_round"
+-- NOTE: This specifically corrects an error where many
+-- of the round numbers were increasing in steps of 2 
+-- (e.g. "1, 3, 5" instead of "1, 2, 3")
              WITH
  map_round_lag AS (
            SELECT round_start_time,
