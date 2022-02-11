@@ -76,7 +76,7 @@
              WITH
  map_round_lag AS (
            SELECT round_start_time,
-                  LAG(map_round, 1, "0") OVER() map_round_lag
+                  LAG(map_round, 1, "0") OVER() lagged_map_round
              FROM match_map_stats
                   ),
 				  
@@ -85,11 +85,11 @@
 	            (CASE
 		       WHEN mms.map_round = "1"
 			 THEN 1
-		       WHEN mms.map_round = "5" AND mrl.map_round_lag = "3"
+		       WHEN mms.map_round = "5" AND mrl.lagged_map_round = "3"
 		         THEN 3
-		       WHEN mms.map_round = "7" AND mrl.map_round_lag = "5"
+		       WHEN mms.map_round = "7" AND mrl.lagged_map_round = "5"
 		         THEN 4
-	               ELSE mrl.map_round_lag + 1
+	               ELSE mrl.lagged_map_round + 1
 		     END) map_round
               FROM match_map_stats mms
               JOIN map_round_lag mrl ON mrl.round_start_time = mms.round_start_time
