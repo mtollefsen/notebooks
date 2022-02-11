@@ -50,7 +50,7 @@ stat_amount - measure of the stat_name
 -- Ensures all start_time dates follow "YYYY-MM-DD hh:mm" format
         UPDATE player_stat
            SET start_time = SUBSTR(start_time, 7, 4) || '-' || SUBSTR(start_time, 1, 2) || '-' ||
-                          SUBSTR(start_time, 4, 2) ||  SUBSTR(start_time, 11)
+                            SUBSTR(start_time, 4, 2) ||  SUBSTR(start_time, 11)
          WHERE SUBSTR(start_time, 3, 1) = '/';
        
 -- Ensures all hour fields in start_time are double digit
@@ -63,11 +63,12 @@ stat_amount - measure of the stat_name
 -- which indicates if the match was a title match or not
 -- NOTE: this only captures title matches for the 2018 and 2019 season
 /*
-ALTER TABLE player_stat
- ADD COLUMN title_match AS (CASE
-                              WHEN stage LIKE '%Title Match%' THEN 1
-                              ELSE 0
-                            END);
+   ALTER TABLE player_stat
+    ADD COLUMN title_match AS (CASE
+                                 WHEN stage LIKE '%Title Match%' 
+                                   THEN 1
+                                 ELSE 0
+                               END);
 */
 
        
@@ -137,22 +138,24 @@ ALTER TABLE player_stat
          
 -- If you don't want international characters in your dataset use the following code instead
 /*
-UPDATE player_stat
-   SET hero = 'Lucio'
- WHERE hero IN ('LÃºcio', 'Lúcio');
+        UPDATE player_stat
+           SET hero = 'Lucio'
+         WHERE hero IN ('LÃºcio', 'Lúcio');
 
-UPDATE player_stat
-   SET hero = 'Torbjorn'
- WHERE hero IN ('TorbjÃ¶rn', 'Torbjörn');
+        UPDATE player_stat
+           SET hero = 'Torbjorn'
+         WHERE hero IN ('TorbjÃ¶rn', 'Torbjörn');
 */
 
 
 -- Separates All-Star events into its own table "player_stat_allstar"
-        CREATE TABLE player_stat_allstar AS
-        SELECT * FROM player_stat
+  CREATE TABLE player_stat_allstar AS
+        SELECT * 
+          FROM player_stat
          WHERE stage IN ('2020 APAC All-Stars', '2020 NA All-Stars');
 
 -- Deletes the rows that were used to make "player_stat_allstar"
-        DELETE FROM player_stat
+        DELETE 
+          FROM player_stat
          WHERE stage IN ('2020 APAC All-Stars', '2020 NA All-Stars');
          
