@@ -120,8 +120,8 @@
 	       
 	       
 -- Each query corrects round_length
--- NOTE: incorrect round_length times are
--- primarily due to long pauses midmatch
+-- NOTE: incorrect round_length times are primarily 
+-- due to long pauses that occurred midmatch
             UPDATE match_map_stats
                SET round_length = 443
              WHERE ROWID = 8033;
