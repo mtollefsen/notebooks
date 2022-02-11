@@ -25,6 +25,8 @@ The original source of the raw data can be found here: https://overwatchleague.c
   -  DISTINCT
   -  GROUP BY column<br>
      HAVING COUNT(column) <> COUNT(DISTINCT column)
+  -  GROUP BY column<br>
+     HAVING MAX(column) <> COUNT(DISTINCT column)
 
 ## Plans for Improvement
 - Determine a good primary key for player_stat
