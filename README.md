@@ -5,8 +5,8 @@ The original source of the raw data can be found here: https://overwatchleague.c
 
 ## Before
 ![Overwatch League Data raw](https://user-images.githubusercontent.com/97869630/152226888-bdc4aa8b-30c1-4126-bbae-a083f2b9c8ba.PNG)
-- 14 CSV files
-- 4,958,301 rows of data
+
+4,958,301 rows of data from 14 CSV files, problems included:
 - Spelling errors
 - Inconsistent formatting
 - Incorrect values
@@ -21,13 +21,13 @@ The original source of the raw data can be found here: https://overwatchleague.c
 ## What I Used
 - Database normalization
 - Window and aggregate functions
-- Expressions that were helpful in troubleshooting the dataset: 
+- Troubleshooting queries, including: 
   -  IS / IS NOT NULL
   -  DISTINCT
-  -  GROUP BY column<br>
-     HAVING COUNT(column) <> COUNT(DISTINCT column)
-  -  GROUP BY column<br>
-     HAVING MAX(column) <> COUNT(DISTINCT column)
+  -  GROUP BY <br>
+     HAVING COUNT( ) <> COUNT(DISTINCT( ))
+  -  GROUP BY <br>
+     HAVING MAX( ) <> COUNT(DISTINCT( ))
 
 ## Plans for Improvement
 - Determine a good primary key for player_stat
