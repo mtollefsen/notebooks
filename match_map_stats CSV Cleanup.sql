@@ -43,6 +43,7 @@
                                        WHERE ROWID = 4065)
             WHERE ROWID = 4065;
  
+ 
 -- Deletes a duplicate row with incorrect round_start_time
       DELETE FROM match_map_stats
             WHERE ROWID = 4066;
@@ -58,8 +59,14 @@
 -- Deletes a duplicate row
       DELETE FROM match_map_stats
             WHERE ROWID = 9943;
-            
+          
+          
 -- Corrects game_number for match 10280
            UPDATE match_map_stats
-              SET game_number = 4
+              SET game_number = "4"
             WHERE ROWID IN (664, 665);
+
+-- Corrects game_number for match 21433
+           UPDATE match_map_stats
+              SET game_number = "4"
+            WHERE ROWID IN (5364, 5365);
