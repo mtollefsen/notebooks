@@ -117,6 +117,14 @@
 -- Populates column "round_length"
             UPDATE match_map_stats
                SET round_length = (strftime("%s", round_end_time) - strftime("%s", round_start_time));
+
+
+-- Formats values in "stage"
+            UPDATE match_map_stats
+               SET stage = REPLACE(stage, "Overwatch League Inaugural Season Championship", "2018 Playoffs")
+             WHERE SUBSTR(round_start_time, 1, 4) = "2018";
+	     
+	     
 	       
 	       
 -- Each query corrects round_length time 
