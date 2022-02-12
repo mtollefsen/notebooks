@@ -42,6 +42,20 @@ stat_amount - measure of the stat_name
         SELECT * FROM phs_2021_1;
 
 
+-- Ensures all month fields in start_time are double digits
+        UPDATE player_stat
+           SET start_time = "0" || start_time
+         WHERE SUBSTR(start_time, 2, 1) = "/";
+       
+-- Ensures all day fields in start_time are double digits       
+        UPDATE player_stat
+           SET start_time = SUBSTR(start_time, 1, 3) || "0" || SUBSTR(start_time, 4)
+         WHERE SUBSTR(start_time, 5, 1) = "/";
+         
+         
+
+
+
 -- Ensures all day fields in start_time are double digit
         UPDATE player_stat
            SET start_time = SUBSTR(start_time, 1, 3) || '0' || SUBSTR(start_time, 4)
@@ -136,7 +150,8 @@ stat_amount - measure of the stat_name
            SET hero = 'Torbjörn'
          WHERE hero = 'TorbjÃ¶rn';
          
--- If you don't want international characters in your dataset use the following code instead
+-- If you don't want international characters in your dataset
+-- use the following queries instead of the above two queries
 /*
         UPDATE player_stat
            SET hero = 'Lucio'
