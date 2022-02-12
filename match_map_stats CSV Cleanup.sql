@@ -124,8 +124,27 @@
                SET stage = REPLACE(stage, "Overwatch League Inaugural Season Championship", "2018 Playoffs")
              WHERE SUBSTR(round_start_time, 1, 4) = "2018";
 	     
+	    UPDATE match_map_stats
+               SET stage = REPLACE(stage, "Overwatch League -", "2018")
+             WHERE SUBSTR(round_start_time, 1, 4) = "2018";
 	     
-	       
+	    UPDATE match_map_stats
+               SET stage = REPLACE(stage, " - Title Matches", "")
+             WHERE SUBSTR(round_start_time, 1, 4) = "2018";
+	     
+	    UPDATE match_map_stats
+               SET stage = REPLACE(stage, " Title Matches", "")
+             WHERE SUBSTR(round_start_time, 1, 4) = "2018";
+	     
+	    UPDATE match_map_stats
+               SET stage = REPLACE(stage, "Overwatch League", "2019")
+             WHERE SUBSTR(round_start_time, 1, 4) = "2019";
+	     
+	    UPDATE match_map_stats
+               SET stage = REPLACE(stage, " Title Matches", "")
+             WHERE SUBSTR(round_start_time, 1, 4) = "2019";
+	     
+	     
 	       
 -- Each query corrects round_length time 
 -- (determined from checking game footage)
