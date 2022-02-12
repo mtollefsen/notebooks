@@ -124,7 +124,7 @@ stat_amount - measure of the stat_name
 -- Despite the name "Post-Season", only playoff matches were included in this stage
         UPDATE player_stat
            SET stage = '2019 Playoffs'
-         WHERE stage = '2019 Post-Season'
+         WHERE stage = '2019 Post-Season';
          
          
 -- Cleans hero column  
