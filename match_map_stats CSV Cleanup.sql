@@ -144,6 +144,17 @@
                SET stage = REPLACE(stage, " Title Matches", "")
              WHERE SUBSTR(round_start_time, 1, 4) = "2019";
 	     
+	    UPDATE match_map_stats
+               SET stage = "2019 Playoffs"
+             WHERE stage = "2019 2019 Post-Season";
+	     
+	    UPDATE match_map_stats
+               SET stage = "2020 Stage"
+             WHERE stage = "OWL 2020 Regular Season";
+	     
+	    UPDATE match_map_stats
+               SET stage = "2021 Stage"
+             WHERE stage = "OWL 2021";
 	     
 	       
 -- Each query corrects round_length time 
