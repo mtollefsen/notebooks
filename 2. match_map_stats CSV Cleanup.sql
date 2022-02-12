@@ -157,9 +157,9 @@
              WHERE stage = "OWL 2021";
 	     
 	       
--- Each query corrects round_length time 
--- (determined from checking game footage)
--- NOTE: inflated round_length times are primarily 
+-- Each query corrects the round_length time of a row 
+-- (correct time determined from checking game footage)
+-- NOTE: the inflated round_length times are primarily 
 -- due to long pauses that occurred midmatch
             UPDATE match_map_stats
                SET round_length = 443
