@@ -158,7 +158,7 @@
 	     
 	       
 -- Each query corrects the round_length time of a row 
--- (correct time determined from checking game footage)
+-- (correct time was determined by checking game footage)
 -- NOTE: the inflated round_length times are primarily 
 -- due to long pauses that occurred midmatch
             UPDATE match_map_stats
