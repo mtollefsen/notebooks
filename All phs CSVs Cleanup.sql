@@ -72,7 +72,7 @@ stat_amount - measure of the stat_name
 /*
    ALTER TABLE player_stat
     ADD COLUMN title_match AS (CASE
-                                 WHEN stage LIKE '%Title Match%' 
+                                 WHEN stage LIKE "%Title Match%"
                                    THEN 1
                                  ELSE 0
                                END);
@@ -90,71 +90,71 @@ stat_amount - measure of the stat_name
 
 -- Formats the values in stage
         UPDATE player_stat
-           SET stage = REPLACE(stage, 'Overwatch League Inaugural Season Championship', '2018 Playoffs')
-         WHERE SUBSTR(start_time, 1, 4) = '2018';
+           SET stage = REPLACE(stage, "Overwatch League Inaugural Season Championship", "2018 Playoffs")
+         WHERE SUBSTR(start_time, 1, 4) = "2018";
  
         UPDATE player_stat
-           SET stage = REPLACE(stage, 'Overwatch League -', '2018')
-         WHERE SUBSTR(start_time, 1, 4) = '2018';
+           SET stage = REPLACE(stage, "Overwatch League -", "2018")
+         WHERE SUBSTR(start_time, 1, 4) = "2018";
          
         UPDATE player_stat
-           SET stage = REPLACE(stage, ' - Title Matches', '')
-         WHERE SUBSTR(start_time, 1, 4) = '2018';
+           SET stage = REPLACE(stage, " - Title Matches", "")
+         WHERE SUBSTR(start_time, 1, 4) = "2018";
          
         UPDATE player_stat
-           SET stage = REPLACE(stage, ' Title Matches', '');
+           SET stage = REPLACE(stage, " Title Matches", "");
          
         UPDATE player_stat
-           SET stage = REPLACE(stage, 'Overwatch League ', '')
-         WHERE SUBSTR(start_time, 1, 4) = '2019';
+           SET stage = REPLACE(stage, "Overwatch League ", "")
+         WHERE SUBSTR(start_time, 1, 4) = "2019";
 
         UPDATE player_stat
-           SET stage = '2019 ' || stage
-         WHERE SUBSTR(start_time, 1, 4) = '2019' AND
-               stage LIKE '%Stage%';
+           SET stage = "2019 " || stage
+         WHERE SUBSTR(start_time, 1, 4) = "2019" AND
+               stage LIKE "%Stage%";
                
         UPDATE player_stat
-           SET stage = REPLACE(stage, 'OWL ', '');
+           SET stage = REPLACE(stage, "OWL ", "");
            
         UPDATE player_stat
-           SET stage = REPLACE(stage, 'North America', 'NA');
+           SET stage = REPLACE(stage, "North America", "NA");
            
         UPDATE player_stat
-           SET stage = '2020 ' || stage
-         WHERE SUBSTRING(stage, 1, 1) <> '2';
+           SET stage = "2020 " || stage
+         WHERE SUBSTRING(stage, 1, 1) <> "2";
          
         UPDATE player_stat
-           SET stage = stage || ' Stage'
-         WHERE SUBSTRING(stage, 1, 4) = '2021';
+           SET stage = stage || " Stage"
+         WHERE SUBSTRING(stage, 1, 4) = "2021";
          
 	UPDATE player_stat
 	   SET stage = "2020 Stage"
 	 WHERE stage = "2020 Regular Season"
 	 
         UPDATE player_stat
-           SET stage = '2019 Playoffs'
-         WHERE stage = '2019 Post-Season';
+           SET stage = "2019 Playoffs"
+         WHERE stage = "2019 Post-Season";
          
          
 -- Cleans hero column  
         UPDATE player_stat
-           SET hero = 'Lúcio'
-         WHERE hero = 'LÃºcio';
+           SET hero = "Lúcio"
+         WHERE hero = "LÃºcio";
          
         UPDATE player_stat
-           SET hero = 'Torbjörn'
-         WHERE hero = 'TorbjÃ¶rn';
+           SET hero = "Torbjörn"
+         WHERE hero = "TorbjÃ¶rn";
          
 -- If you don't want international characters in your dataset
 -- use the following queries instead of the above two queries
 /*
         UPDATE player_stat
-           SET hero = 'Lucio'
-         WHERE hero IN ('LÃºcio', 'Lúcio');
+           SET hero = "Lucio"
+         WHERE hero IN ("LÃºcio", "Lúcio");
 
         UPDATE player_stat
-           SET hero = 'Torbjorn'
-         WHERE hero IN ('TorbjÃ¶rn', 'Torbjörn');
+           SET hero = "Torbjorn"
+         WHERE hero IN ("TorbjÃ¶rn", "Torbjörn");
 */
 
 
@@ -162,10 +162,10 @@ stat_amount - measure of the stat_name
   CREATE TABLE player_stat_allstar AS
         SELECT * 
           FROM player_stat
-         WHERE stage IN ('2020 APAC All-Stars', '2020 NA All-Stars');
+         WHERE stage IN ("2020 APAC All-Stars", "2020 NA All-Stars");
 
 -- Deletes the rows that were used to make "player_stat_allstar"
         DELETE 
           FROM player_stat
-         WHERE stage IN ('2020 APAC All-Stars', '2020 NA All-Stars');
+         WHERE stage IN ("2020 APAC All-Stars", "2020 NA All-Stars");
          
