@@ -119,8 +119,9 @@
                SET round_length = (strftime("%s", round_end_time) - strftime("%s", round_start_time));
 	       
 	       
--- Each query corrects round_length
--- NOTE: incorrect round_length times are primarily 
+-- Each query corrects round_length time 
+-- (determined from checking game footage)
+-- NOTE: inflated round_length times are primarily 
 -- due to long pauses that occurred midmatch
             UPDATE match_map_stats
                SET round_length = 443
