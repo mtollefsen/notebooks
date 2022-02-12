@@ -127,8 +127,10 @@ stat_amount - measure of the stat_name
            SET stage = stage || ' Stage'
          WHERE SUBSTRING(stage, 1, 4) = '2021';
          
--- Renames "2019 Post-Season" to "2019 Playoffs"
--- Despite the name "Post-Season", only playoff matches were included in this stage
+	UPDATE player_stat
+	   SET stage = "2020 Stage"
+	 WHERE stage = "2020 Regular Season"
+	 
         UPDATE player_stat
            SET stage = '2019 Playoffs'
          WHERE stage = '2019 Post-Season';
