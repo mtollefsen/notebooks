@@ -162,3 +162,7 @@
 	    UPDATE match_map_stats
                SET round_length = 341
              WHERE ROWID = 8005;
+	     
+	    UPDATE match_map_stats
+               SET round_length = 500
+             WHERE ROWID = 6328;
