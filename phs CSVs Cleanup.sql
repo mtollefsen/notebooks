@@ -52,25 +52,18 @@ stat_amount - measure of the stat_name
            SET start_time = SUBSTR(start_time, 1, 3) || "0" || SUBSTR(start_time, 4)
          WHERE SUBSTR(start_time, 5, 1) = "/";
          
+-- Ensures all hour fields in start_time are double digits
+        UPDATE player_stat
+           SET start_time = SUBSTR(start_time, 1, 11) || "0" || SUBSTR(start_time, 12)
+         WHERE SUBSTR(start_time, 13, 1) = ":";
          
-
-
-
--- Ensures all day fields in start_time are double digit
-        UPDATE player_stat
-           SET start_time = SUBSTR(start_time, 1, 3) || '0' || SUBSTR(start_time, 4)
-         WHERE SUBSTR(start_time, 5, 1) = '/';
-
--- Ensures all start_time dates follow "YYYY-MM-DD hh:mm" format
-        UPDATE player_stat
-           SET start_time = SUBSTR(start_time, 7, 4) || '-' || SUBSTR(start_time, 1, 2) || '-' ||
-                            SUBSTR(start_time, 4, 2) ||  SUBSTR(start_time, 11)
-         WHERE SUBSTR(start_time, 3, 1) = '/';
-       
--- Ensures all hour fields in start_time are double digit
-        UPDATE player_stat
-           SET start_time = SUBSTR(start_time, 1, 11) || '0' || SUBSTR(start_time, 12)
-         WHERE SUBSTR(start_time, 13, 1) = ':';
+-- Converts all values in start_time to "YYYY-MM-DD hh:mm:ss" format
+         UPDATE player_stat
+            SET start_time = datetime(
+                             SUBSTR(start_time, 7, 4) || "-" || SUBSTR(start_time, 1, 2) ||
+                             "-" || SUBSTR(start_time, 4, 2) || SUBSTR(start_time, 11) 
+				                     )
+          WHERE SUBSTRING(start_time, 3, 1) = "/";
 
 
 -- Optional code to add boolean column "title_match"
