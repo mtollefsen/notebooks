@@ -1,5 +1,5 @@
 # Overwatch-League-Data-Cleanup
-SQL (specifically SQLite) code I used to clean and organize data from the Overwatch League. Files are numbered in the order that I cleaned and performed them. 
+SQL (specifically SQLite) code that I used to clean and organize data from the Overwatch League. Files are numbered in the order that I cleaned and performed them. 
 
 The original source of the raw data can be found here: https://overwatchleague.com/en-us/statslab
 
