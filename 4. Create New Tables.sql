@@ -67,3 +67,43 @@
                   ON mms.match_id = ps.match_id AND
                      mms.map_name = ps.map_name
                WHERE round_number = 1;
+	      
+	       
+	CREATE TABLE match (
+                     start_time TEXT,
+	             stage TEXT,
+		     match_id TEXT PRIMARY KEY,
+		     winner TEXT,
+	             loser TEXT,
+		     winning_score INTEGER,
+		     ties INTEGER,
+		     losing_score INTEGER
+		     );
+
+         INSERT INTO match
+              SELECT mms.round_start_time as start_time,
+                     mms.stage,
+                     g.match_id,
+	             mms.match_winner as winner,
+	             mms.match_loser as loser,
+                     SUM(CASE
+	                   WHEN g.winner = mms.match_winner
+			     THEN 1
+			   ELSE 0
+		         END) as winning_score,
+	             SUM(CASE
+	                   WHEN g.winner = "draw"
+			     THEN 1
+			   ELSE 0
+		         END) as ties,
+	             SUM(CASE
+	                   WHEN g.winner = mms.match_loser
+			     THEN 1
+			   ELSE 0
+		         END) as losing_score
+                FROM game g
+                JOIN match_map_stats mms
+                  ON g.match_id = mms.match_id AND
+                     g.game_number = mms.game_number
+               WHERE mms.round_number = 1
+            GROUP BY g.match_id;
