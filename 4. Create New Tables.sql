@@ -107,3 +107,15 @@
                      g.game_number = mms.game_number
                WHERE mms.round_number = 1
             GROUP BY g.match_id;
+
+
+        CREATE TABLE stage (
+                     season TEXT,
+	             stage TEXT PRIMARY KEY
+	             );
+
+         INSERT INTO stage	 
+              SELECT DISTINCT
+                     SUBSTRING(stage, 1, 4) as season,
+                     stage
+                FROM match;
