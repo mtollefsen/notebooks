@@ -142,7 +142,7 @@
                 FROM match_map_stats
             GROUP BY match_id, game_number
                      )
-
+		     
               UPDATE player_stat
                  SET match_id = gic.game_id
                 FROM game_id_conv gic
