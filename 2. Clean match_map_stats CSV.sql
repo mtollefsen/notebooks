@@ -83,7 +83,7 @@
              FROM match_map_stats
                   ),
 				  
-    map_round_new AS (
+ map_round_new AS (
            SELECT mrl.round_start_time,
 	            (CASE
 		       WHEN mms.map_round = "1"
