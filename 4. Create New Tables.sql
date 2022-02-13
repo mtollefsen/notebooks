@@ -119,3 +119,16 @@
                      SUBSTRING(stage, 1, 4) as season,
                      stage
                 FROM match;
+
+
+        CREATE TABLE season (
+                     season TEXT PRIMARY KEY,
+	             winner TEXT
+	             );
+			 
+         INSERT INTO season (season, winner)
+              VALUES
+                     (2018, "London Spitfire"),
+	             (2019, "San Francisco Shock"),
+	             (2020, "San Francisco Shock"),
+	             (2021, "Shanghai Dragons");
