@@ -134,23 +134,23 @@
 	             (2021, "Shanghai Dragons");
 
 
-WITH
-game_id_conv AS (
-SELECT match_id,
-	   match_id || "." || game_number as game_id,
-	   map_name
-FROM match_map_stats
-GROUP BY match_id, game_number
-)
+                WITH
+     game_id_conv AS (
+              SELECT match_id,
+	             match_id || "." || game_number as game_id,
+	             map_name
+                FROM match_map_stats
+            GROUP BY match_id, game_number
+                     )
 
-UPDATE player_stat
-SET match_id = gic.game_id
-FROM game_id_conv gic
-WHERE player_stat.match_id = gic.match_id AND
-      player_stat.map_name = gic.map_name;
+              UPDATE player_stat
+                 SET match_id = gic.game_id
+                FROM game_id_conv gic
+               WHERE player_stat.match_id = gic.match_id AND
+                     player_stat.map_name = gic.map_name;
       
-      UPDATE player_stat
-SET match_id = "30173.2"
-WHERE start_time = "2019-08-31 03:37:00";
+              UPDATE player_stat
+                 SET match_id = "30173.2"
+               WHERE start_time = "2019-08-31 03:37:00";
       
       
