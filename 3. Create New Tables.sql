@@ -155,4 +155,53 @@
       
          ALTER TABLE player_stat
               RENAME match_id TO game_id;
-      
+	      
+	       ALTER TABLE player_stat
+                DROP COLUMN stage;
+
+         ALTER TABLE player_stat
+                DROP COLUMN game_mode;
+
+         ALTER TABLE player_stat
+                DROP COLUMN map_name;
+		
+        CREATE TABLE player_stat_2018 AS 
+              SELECT game_id,
+                     team,
+	             player,
+	             hero,
+	             stat_name,
+                     stat_amount
+                FROM player_stat
+               WHERE SUBSTR(start_time, 1, 4) = "2018";
+
+        CREATE TABLE player_stat_2019 AS 
+              SELECT game_id,
+                     team,
+	             player,
+	             hero,
+	             stat_name,
+	             stat_amount
+                FROM player_stat
+               WHERE SUBSTR(start_time, 1, 4) = "2019";
+
+        CREATE TABLE player_stat_2020 AS 
+              SELECT game_id,
+                     team,
+	             player,
+	             hero,
+	             stat_name,
+ 	             stat_amount
+                FROM player_stat
+               WHERE SUBSTR(start_time, 1, 4) = "2020";
+
+        CREATE TABLE player_stat_2021 AS 
+              SELECT game_id,
+                     team,
+	             player,
+	             hero,
+	             stat_name,
+ 	             stat_amount
+                FROM player_stat
+               WHERE SUBSTR(start_time, 1, 4) = "2021";
+	       
