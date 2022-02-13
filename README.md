@@ -1,7 +1,7 @@
 # Overwatch-League-Data-Cleanup
 SQL (specifically SQLite) code that I used to clean and organize data from the Overwatch League. Files are numbered in the order that I cleaned and performed them. 
 
-The original source of the raw data can be found here: https://overwatchleague.com/en-us/statslab Under "Download the Data" near the bottom.
+The original source of the raw data can be found here: https://overwatchleague.com/en-us/statslab under "Download the Data" near the bottom.
 
 ## Before
 ![Overwatch League Data raw](https://user-images.githubusercontent.com/97869630/152226888-bdc4aa8b-30c1-4126-bbae-a083f2b9c8ba.PNG)
