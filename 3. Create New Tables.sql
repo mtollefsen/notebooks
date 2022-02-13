@@ -153,4 +153,6 @@
                  SET match_id = "30173.2"
                WHERE start_time = "2019-08-31 03:37:00";
       
+         ALTER TABLE player_stat
+              RENAME match_id TO game_id;
       
