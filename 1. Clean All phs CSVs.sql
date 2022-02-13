@@ -63,7 +63,7 @@ stat_amount - measure of the stat_name
             SET start_time = datetime(
                              SUBSTR(start_time, 7, 4) || "-" || SUBSTR(start_time, 1, 2) ||
                              "-" || SUBSTR(start_time, 4, 2) || SUBSTR(start_time, 11) 
-				                     )
+	                              )
           WHERE SUBSTRING(start_time, 3, 1) = "/";
 
 
@@ -83,8 +83,7 @@ stat_amount - measure of the stat_name
 -- Sets map_type to proper case
         UPDATE player_stat
            SET map_type = SUBSTR(map_type, 1, 1) || LOWER(SUBSTR(map_type, 2));
-           
--- Changes name of "map_type" to "game_mode"
+
    ALTER TABLE player_stat
  RENAME COLUMN map_type TO game_mode;
 
@@ -146,8 +145,7 @@ stat_amount - measure of the stat_name
            SET hero = "Torbjörn"
          WHERE hero = "TorbjÃ¶rn";
          
--- If you don't want international characters in your dataset
--- use the following queries instead of the above two queries
+-- Alternative queries if you don't want international characters in your dataset
 /*
         UPDATE player_stat
            SET hero = "Lucio"
@@ -162,12 +160,14 @@ stat_amount - measure of the stat_name
            SET hero = "Cassidy"
          WHERE hero = "McCree";
 
-
--- Separates All-Star events into its own table "player_stat_allstar"
+-- Optional query if you would like to maintain a table
+-- of all player stats forAll-Star events
+/*
   CREATE TABLE player_stat_allstar AS
         SELECT * 
           FROM player_stat
          WHERE stage IN ("2020 APAC All-Stars", "2020 NA All-Stars");
+*/
 
 -- Deletes the rows that were used to make "player_stat_allstar"
         DELETE 
