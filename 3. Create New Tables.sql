@@ -127,8 +127,7 @@
 	             );
 			 
          INSERT INTO season (season, winner)
-              VALUES
-                     (2018, "London Spitfire"),
+              VALUES (2018, "London Spitfire"),
 	             (2019, "San Francisco Shock"),
 	             (2020, "San Francisco Shock"),
 	             (2021, "Shanghai Dragons");
