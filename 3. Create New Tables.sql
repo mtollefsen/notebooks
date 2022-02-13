@@ -205,3 +205,9 @@
                 FROM player_stat
                WHERE SUBSTR(start_time, 1, 4) = "2021";
 	       
+	       
+	CREATE TABLE hero (
+                     number,
+	             name PRIMARY KEY,
+	             role
+	             );
