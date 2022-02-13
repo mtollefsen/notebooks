@@ -1,4 +1,42 @@
-        CREATE TABLE game (
+        
+	CREATE TABLE round (
+                     round_start_time TEXT,
+                     round_end_time TEXT,
+	             game_id TEXT,
+	             round_id TEXT PRIMARY KEY,
+	             map_subsection TEXT,
+	             attacker TEXT,
+	             defender TEXT,
+	             attacker_round_end_score INTEGER,
+	             defender_round_end_score INTEGER,
+	             attacker_time_banked NUMERIC,
+	             defender_time_banked NUMERIC,
+	             attacker_payload_distance NUMERIC,
+	             defender_payload_distance NUMERIC,
+	             attacker_control_percent INTEGER,
+	             defender_control_percent INTEGER
+	             );
+	
+	INSERT INTO round
+             SELECT round_start_time,
+                    round_end_time,
+	            match_id || "." || game_number as game_id,
+	            match_id || "." || game_number || "." || round_number as round_id,
+	            map_subsection,
+	            attacker,
+	            defender,
+	            attacker_round_end_score,
+	            defender_round_end_score,
+	            attacker_time_banked,
+	            defender_time_banked,
+	            attacker_payload_distance,
+	            defender_payload_distance,
+	            attacker_control_percent,
+	            defender_control_percent
+               FROM match_map_stats;
+	
+	
+	CREATE TABLE game (
                      start_time TEXT,
 	  	     match_id TEXT,
 		     game_id TEXT PRIMARY KEY,
