@@ -211,7 +211,6 @@
 	             role
 	             );
 
-
          INSERT INTO hero (number, name, role)
               VALUES (1,  "Tracer",        "Damage"),
 	             (2,  "Reaper",        "Damage"),
