@@ -17,23 +17,23 @@
 	             defender_control_percent INTEGER
 	             );
 	
-	INSERT INTO round
-             SELECT round_start_time,
-                    round_end_time,
-	            match_id || "." || game_number as game_id,
-	            match_id || "." || game_number || "." || round_number as round_id,
-	            map_subsection,
-	            attacker,
-	            defender,
-	            attacker_round_end_score,
-	            defender_round_end_score,
-	            attacker_time_banked,
-	            defender_time_banked,
-	            attacker_payload_distance,
-	            defender_payload_distance,
-	            attacker_control_percent,
-	            defender_control_percent
-               FROM match_map_stats;
+	 INSERT INTO round
+              SELECT round_start_time,
+                     round_end_time,
+	             match_id || "." || game_number as game_id,
+	             match_id || "." || game_number || "." || round_number as round_id,
+	             map_subsection,
+	             attacker,
+	             defender,
+	             attacker_round_end_score,
+	             defender_round_end_score,
+	             attacker_time_banked,
+	             defender_time_banked,
+	             attacker_payload_distance,
+	             defender_payload_distance,
+	             attacker_control_percent,
+	             defender_control_percent
+                FROM match_map_stats;
 	
 	
 	CREATE TABLE game (
