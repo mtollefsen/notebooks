@@ -158,6 +158,10 @@ stat_amount - measure of the stat_name
          WHERE hero IN ("TorbjÃ¶rn", "Torbjörn");
 */
 
+        UPDATE player_stat
+           SET hero = "Cassidy"
+         WHERE hero = "McCree";
+
 
 -- Separates All-Star events into its own table "player_stat_allstar"
   CREATE TABLE player_stat_allstar AS
