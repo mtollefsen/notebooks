@@ -164,14 +164,23 @@
          ALTER TABLE player_stat
                 DROP COLUMN map_name;
 		
+			
         CREATE TABLE player_stat_2018 AS 
-              SELECT game_id TEXT NOT NULL,
+                     game_id TEXT NOT NULL,
                      team TEXT NOT NULL,
 	             player TEXT NOT NULL,
 	             hero TEXT NOT NULL,
 	             stat_name TEXT NOT NULL,
+                     stat_amount,
+		     PRIMARY KEY (game_id, team, player, hero, stat_name);
+	       
+         INSERT INTO player_stat_2018  
+              SELECT game_id,
+                     team,
+	             player,
+	             hero,
+	             stat_name,
                      stat_amount
-		     PRIMARY KEY (game_id, team, player, hero, stat_name)
                 FROM player_stat
                WHERE SUBSTR(start_time, 1, 4) = "2018";
 
@@ -246,9 +255,6 @@
 		     (31, "Sigma",         "Tank"),
 		     (32, "Echo",          "Damage"),
 		     (33, "Sojourn",       "Damage");
-
-
-              PRAGMA foreign_keys = ON;
 
 
 -- Dropping all redundant tables
