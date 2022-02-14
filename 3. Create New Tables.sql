@@ -173,17 +173,18 @@
 	             stat_name TEXT NOT NULL,
                      stat_amount,
 		     PRIMARY KEY (game_id, team, player, hero, stat_name);
-	       
-         INSERT INTO player_stat_2018  
-              SELECT game_id,
-                     team,
-	             player,
-	             hero,
-	             stat_name,
-                     stat_amount
-                FROM player_stat
-               WHERE SUBSTR(start_time, 1, 4) = "2018";
-
+	    
+	 INSERT INTO player_stat_2018
+	      SELECT game_id,
+		     team,
+		     player,
+		     hero,
+		     stat_name,
+		     MIN(stat_amount)
+		FROM player_stat
+	       WHERE SUBSTR(start_time, 1, 4) = "2018"
+	    GROUP BY game_id, team, player, hero, stat_name;  --group by is necessary here b/c of an error in the data resulting
+	                                                      --in duplicate rows for Winston - Melee Kills and Mei - Self Healing
         CREATE TABLE player_stat_2019 AS 
               SELECT game_id,
                      team,
