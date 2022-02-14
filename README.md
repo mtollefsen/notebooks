@@ -16,7 +16,8 @@ The original source of the raw data can be found here: https://overwatchleague.c
 ## After
 ![Overwatch League Database organized](https://user-images.githubusercontent.com/97869630/152306351-3733b08d-6449-48ed-9d1a-a62543a7ee78.PNG)
 - Added primary keys (bolded)
-- Created columns
+- Added foreign keys
+- Added constraints
 
 ## What I Used
 - Database normalization
