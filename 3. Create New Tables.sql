@@ -50,7 +50,6 @@
 	             losing_score INTEGER
 	             );
 
-
          INSERT INTO game
               SELECT DISTINCT 
                      mms.round_start_time as start_time,
