@@ -165,14 +165,15 @@
                 DROP COLUMN map_name;
 		
 			
-        CREATE TABLE player_stat_2018 AS 
+        CREATE TABLE player_stat_2018 (
                      game_id TEXT NOT NULL,
                      team TEXT NOT NULL,
 	             player TEXT NOT NULL,
 	             hero TEXT NOT NULL,
 	             stat_name TEXT NOT NULL,
-                     stat_amount,
-		     PRIMARY KEY (game_id, team, player, hero, stat_name);
+                     stat_amount NUMERIC,
+		     PRIMARY KEY (game_id, team, player, hero, stat_name)
+		     );
 	    
 	 INSERT INTO player_stat_2018
 	      SELECT game_id,
@@ -183,43 +184,76 @@
 		     MIN(stat_amount)
 		FROM player_stat
 	       WHERE SUBSTR(start_time, 1, 4) = "2018"
-	    GROUP BY game_id, team, player, hero, stat_name;  --group by is necessary here b/c of an error in the data resulting
-	                                                      --in duplicate rows for Winston - Melee Kills and Mei - Self Healing
-        CREATE TABLE player_stat_2019 AS 
-              SELECT game_id,
-                     team,
-	             player,
-	             hero,
-	             stat_name,
-	             stat_amount
-                FROM player_stat
-               WHERE SUBSTR(start_time, 1, 4) = "2019";
+	    GROUP BY game_id, team, player, hero, stat_name;  --group by is necessary b/c there are duplicate rows
+	                                                      --for Winston - Melee Kills and Mei - Self Healing
+        CREATE TABLE player_stat_2019 (
+                     game_id TEXT NOT NULL,
+                     team TEXT NOT NULL,
+	             player TEXT NOT NULL,
+	             hero TEXT NOT NULL,
+	             stat_name TEXT NOT NULL,
+                     stat_amount NUMERIC,
+		     PRIMARY KEY (game_id, team, player, hero, stat_name)
+		     );
 
-        CREATE TABLE player_stat_2020 AS 
-              SELECT game_id,
-                     team,
-	             player,
-	             hero,
-	             stat_name,
- 	             stat_amount
-                FROM player_stat
-               WHERE SUBSTR(start_time, 1, 4) = "2020";
+	 INSERT INTO player_stat_2019
+	      SELECT game_id,
+		     team,
+		     player,
+		     hero,
+		     stat_name,
+		     MIN(stat_amount)
+		FROM player_stat
+	       WHERE SUBSTR(start_time, 1, 4) = "2019"
+	    GROUP BY game_id, team, player, hero, stat_name;
 
-        CREATE TABLE player_stat_2021 AS 
-              SELECT game_id,
-                     team,
-	             player,
-	             hero,
-	             stat_name,
- 	             stat_amount
-                FROM player_stat
-               WHERE SUBSTR(start_time, 1, 4) = "2021";
+        CREATE TABLE player_stat_2020 (
+                     game_id TEXT NOT NULL,
+                     team TEXT NOT NULL,
+	             player TEXT NOT NULL,
+	             hero TEXT NOT NULL,
+	             stat_name TEXT NOT NULL,
+                     stat_amount NUMERIC,
+		     PRIMARY KEY (game_id, team, player, hero, stat_name)
+		     );
+
+	 INSERT INTO player_stat_2020
+	      SELECT game_id,
+		     team,
+		     player,
+		     hero,
+		     stat_name,
+		     MIN(stat_amount)
+		FROM player_stat
+	       WHERE SUBSTR(start_time, 1, 4) = "2020"
+	    GROUP BY game_id, team, player, hero, stat_name;
+	       
+        CREATE TABLE player_stat_2021 (
+                     game_id TEXT NOT NULL,
+                     team TEXT NOT NULL,
+	             player TEXT NOT NULL,
+	             hero TEXT NOT NULL,
+	             stat_name TEXT NOT NULL,
+                     stat_amount NUMERIC,
+		     PRIMARY KEY (game_id, team, player, hero, stat_name)
+		     );
+
+	 INSERT INTO player_stat_2021
+	      SELECT game_id,
+		     team,
+		     player,
+		     hero,
+		     stat_name,
+		     MIN(stat_amount)
+		FROM player_stat
+	       WHERE SUBSTR(start_time, 1, 4) = "2021"
+	    GROUP BY game_id, team, player, hero, stat_name;
 	       
 	       
 	CREATE TABLE hero (
-                     number,
+                     number INTEGER UNIQUE,
 	             name PRIMARY KEY,
-	             role
+	             role TEXT
 	             );
 
          INSERT INTO hero (number, name, role)
