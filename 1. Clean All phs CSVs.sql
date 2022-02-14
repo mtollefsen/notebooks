@@ -169,7 +169,7 @@ stat_amount - measure of the stat_name
          WHERE stage IN ("2020 APAC All-Stars", "2020 NA All-Stars");
 */
 
--- Deletes the rows that were used to make "player_stat_allstar"
+-- Deletes the rows that pertain to All-Star events
         DELETE 
           FROM player_stat
          WHERE stage IN ("2020 APAC All-Stars", "2020 NA All-Stars");
