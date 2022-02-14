@@ -129,7 +129,7 @@ stat_amount - measure of the stat_name
          
 	UPDATE player_stat
 	   SET stage = "2020 Stage"
-	 WHERE stage = "2020 Regular Season"
+	 WHERE stage = "2020 Regular Season";
 	 
         UPDATE player_stat
            SET stage = "2019 Playoffs"
