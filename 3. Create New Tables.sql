@@ -1,4 +1,5 @@
         
+--"round"	
 	CREATE TABLE round (
                      round_start_time TEXT,
                      round_end_time TEXT,
@@ -35,7 +36,7 @@
 	             defender_control_percent
                 FROM match_map_stats;
 	
-	
+--"game"	
 	CREATE TABLE game (
                      start_time TEXT,
 	  	     match_id TEXT,
@@ -68,7 +69,7 @@
                      mms.map_name = ps.map_name
                WHERE round_number = 1;
 	      
-	       
+--"match"
 	CREATE TABLE match (
                      start_time TEXT,
 	             stage TEXT,
@@ -108,10 +109,10 @@
                WHERE mms.round_number = 1
             GROUP BY g.match_id;
 
-
+--"stage"
         CREATE TABLE stage (
                      season TEXT,
-	             stage TEXT PRIMARY KEY
+	             name TEXT PRIMARY KEY
 	             );
 
          INSERT INTO stage	 
@@ -120,9 +121,9 @@
                      stage
                 FROM match;
 
-
+--"season"
         CREATE TABLE season (
-                     season TEXT PRIMARY KEY,
+                     name TEXT PRIMARY KEY,
 	             winner TEXT
 	             );
 			 
@@ -132,7 +133,7 @@
 	             (2020, "San Francisco Shock"),
 	             (2021, "Shanghai Dragons");
 
-
+--"player_stat_[year]"
                 WITH
      game_id_conv AS (
               SELECT match_id,
@@ -164,7 +165,6 @@
          ALTER TABLE player_stat
                 DROP COLUMN map_name;
 		
-			
         CREATE TABLE player_stat_2018 (
                      game_id TEXT NOT NULL,
                      team TEXT NOT NULL,
@@ -184,7 +184,7 @@
 		     MIN(stat_amount)
 		FROM player_stat
 	       WHERE SUBSTR(start_time, 1, 4) = "2018"
-	    GROUP BY game_id, team, player, hero, stat_name;  --group by is necessary b/c there are duplicate rows
+	    GROUP BY game_id, team, player, hero, stat_name;  --group by is used to eliminate the duplicate rows
 	                                                      --for Winston - Melee Kills and Mei - Self Healing
         CREATE TABLE player_stat_2019 (
                      game_id TEXT NOT NULL,
@@ -249,7 +249,7 @@
 	       WHERE SUBSTR(start_time, 1, 4) = "2021"
 	    GROUP BY game_id, team, player, hero, stat_name;
 	       
-	       
+--"hero"	       
 	CREATE TABLE hero (
                      number INTEGER UNIQUE,
 	             name PRIMARY KEY,
@@ -291,9 +291,156 @@
 		     (32, "Echo",          "Damage"),
 		     (33, "Sojourn",       "Damage");
 
+--Adds foreign keys
+                     COMMIT; --prevents SQLite from thinking mutliple transactions are occuring
 
--- Dropping all redundant tables
+              PRAGMA foreign_keys = OFF;
+
+               BEGIN TRANSACTION;
+
+	CREATE TABLE round_new (
+                     round_start_time TEXT,
+                     round_end_time TEXT,
+	             game_id TEXT,
+	             round_id TEXT PRIMARY KEY,
+	             map_subsection TEXT,
+	             attacker TEXT,
+	             defender TEXT,
+	             attacker_round_end_score INTEGER,
+	             defender_round_end_score INTEGER,
+	             attacker_time_banked NUMERIC,
+	             defender_time_banked NUMERIC,
+	             attacker_payload_distance NUMERIC,
+	             defender_payload_distance NUMERIC,
+	             attacker_control_percent INTEGER,
+	             defender_control_percent INTEGER,
+		     FOREIGN KEY (game_id) REFERENCES game(game_id)
+	             );
+				 
+         INSERT INTO round_new SELECT * FROM round;
+          DROP TABLE round;
+         ALTER TABLE round_new RENAME TO round;
+
+	CREATE TABLE game_new (
+                     start_time TEXT,
+	  	     match_id TEXT,
+		     game_id TEXT PRIMARY KEY,
+	             game_number INTEGER,
+          	     winner TEXT,
+		     loser TEXT,
+	             map_name TEXT,
+		     game_mode TEXT,
+		     winning_score INTEGER,
+	             losing_score INTEGER,
+		     FOREIGN KEY (match_id) REFERENCES match(match_id)
+	             );
+				 
+         INSERT INTO game_new SELECT * FROM game;
+          DROP TABLE game;
+         ALTER TABLE game_new RENAME TO game;
+
+
+	CREATE TABLE match_new (
+                     start_time TEXT,
+	             stage TEXT,
+		     match_id TEXT PRIMARY KEY,
+		     winner TEXT,
+	             loser TEXT,
+		     winning_score INTEGER,
+		     ties INTEGER,
+		     losing_score INTEGER,
+		     FOREIGN KEY (stage) REFERENCES stage(name)
+		     );
+			 
+			 
+	 INSERT INTO match_new SELECT * FROM match;
+          DROP TABLE match;
+         ALTER TABLE match_new RENAME TO match;
+
+        CREATE TABLE stage_new (
+                     season TEXT,
+	             name TEXT PRIMARY KEY,
+	             FOREIGN KEY (season) REFERENCES season(name)
+	             );
+				 
+	 INSERT INTO stage_new SELECT * FROM stage;
+          DROP TABLE stage;
+         ALTER TABLE stage_new RENAME TO stage;	
+
+
+        CREATE TABLE player_stat_2018_new (
+                     game_id TEXT NOT NULL,
+                     team TEXT NOT NULL,
+	             player TEXT NOT NULL,
+	             hero TEXT NOT NULL,
+	             stat_name TEXT NOT NULL,
+                     stat_amount NUMERIC,
+		     PRIMARY KEY (game_id, team, player, hero, stat_name),
+		     FOREIGN KEY (game_id) REFERENCES game(game_id),
+		     FOREIGN KEY (hero) REFERENCES hero(name)
+		     );
+			 
+	 INSERT INTO player_stat_2018_new SELECT * FROM player_stat_2018;
+          DROP TABLE player_stat_2018;
+         ALTER TABLE player_stat_2018_new RENAME TO player_stat_2018;
+
+
+        CREATE TABLE player_stat_2019_new (
+                     game_id TEXT NOT NULL,
+                     team TEXT NOT NULL,
+	             player TEXT NOT NULL,
+	             hero TEXT NOT NULL,
+	             stat_name TEXT NOT NULL,
+                     stat_amount NUMERIC,
+		     PRIMARY KEY (game_id, team, player, hero, stat_name),
+		     FOREIGN KEY (game_id) REFERENCES game(game_id),
+		     FOREIGN KEY (hero) REFERENCES hero(name)
+		     );
+
+	 INSERT INTO player_stat_2019_new SELECT * FROM player_stat_2019;
+          DROP TABLE player_stat_2019;
+         ALTER TABLE player_stat_2019_new RENAME TO player_stat_2019;
+
+
+        CREATE TABLE player_stat_2020_new (
+                     game_id TEXT NOT NULL,
+                     team TEXT NOT NULL,
+	             player TEXT NOT NULL,
+	             hero TEXT NOT NULL,
+	             stat_name TEXT NOT NULL,
+                     stat_amount NUMERIC,
+		     PRIMARY KEY (game_id, team, player, hero, stat_name),
+		     FOREIGN KEY (game_id) REFERENCES game(game_id),
+		     FOREIGN KEY (hero) REFERENCES hero(name)
+		     );
+
+	 INSERT INTO player_stat_2020_new SELECT * FROM player_stat_2020;
+          DROP TABLE player_stat_2020;
+         ALTER TABLE player_stat_2020_new RENAME TO player_stat_2020;
+
+        CREATE TABLE player_stat_2021_new (
+                     game_id TEXT NOT NULL,
+                     team TEXT NOT NULL,
+	             player TEXT NOT NULL,
+	             hero TEXT NOT NULL,
+	             stat_name TEXT NOT NULL,
+                     stat_amount NUMERIC,
+		     PRIMARY KEY (game_id, team, player, hero, stat_name),
+		     FOREIGN KEY (game_id) REFERENCES game(game_id),
+		     FOREIGN KEY (hero) REFERENCES hero(name)
+		     );
+
+	 INSERT INTO player_stat_2021_new SELECT * FROM player_stat_2021;
+          DROP TABLE player_stat_2021;
+         ALTER TABLE player_stat_2021_new RENAME TO player_stat_2021;
+
+                     COMMIT;
+
+              PRAGMA foreign_keys = ON;
+
+--Drops all redundant tables
           DROP TABLE IF EXISTS match_map_stats;
+	  DROP TABLE IF EXISTS player_stat;
 	  DROP TABLE IF EXISTS phs_2018_stage_1;
 	  DROP TABLE IF EXISTS phs_2018_stage_2;
 	  DROP TABLE IF EXISTS phs_2018_stage_3;
