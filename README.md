@@ -20,14 +20,9 @@ The original source of the raw data can be found here: https://overwatchleague.c
 
 ## What I Used
 - Database normalization
-- Window and aggregate functions
-- Troubleshooting queries, including: 
-  -  IS / IS NOT NULL
-  -  DISTINCT
-  -  GROUP BY <br>
-     HAVING COUNT( ) <> COUNT(DISTINCT( ))
-  -  GROUP BY <br>
-     HAVING MAX( ) <> COUNT(DISTINCT( ))
+- Window functions
+- Aggregate functions
+- Troubleshooting queries
 
 ## Plans for Improvement
 - Determine a good primary key for player_stat
