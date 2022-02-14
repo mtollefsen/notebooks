@@ -245,3 +245,21 @@
 		     (31, "Sigma",         "Tank"),
 		     (32, "Echo",          "Damage"),
 		     (33, "Sojourn",       "Damage");
+
+
+-- Dropping all redundant tables
+          DROP TABLE IF EXISTS match_map_stats;
+	  DROP TABLE IF EXISTS phs_2018_stage_1;
+	  DROP TABLE IF EXISTS phs_2018_stage_2;
+	  DROP TABLE IF EXISTS phs_2018_stage_3;
+	  DROP TABLE IF EXISTS phs_2018_stage_4;
+	  DROP TABLE IF EXISTS phs_2018_playoffs;
+	  DROP TABLE IF EXISTS phs_2019_stage_1;
+	  DROP TABLE IF EXISTS phs_2019_stage_2;
+	  DROP TABLE IF EXISTS phs_2019_stage_3;
+	  DROP TABLE IF EXISTS phs_2019_stage_4;
+	  DROP TABLE IF EXISTS phs_2019_playoffs;
+	  DROP TABLE IF EXISTS phs_2020_1;
+	  DROP TABLE IF EXISTS phs_2020_2;
+	  DROP TABLE IF EXISTS phs_2021_1;
+
