@@ -14,7 +14,6 @@ hero - hero the player played
 stat_amount - measure of the stat_name
 */
 
--- Merges all player stats into one table
   CREATE TABLE player_stat AS
         SELECT * FROM phs_2018_stage_1
      UNION ALL
@@ -43,22 +42,20 @@ stat_amount - measure of the stat_name
         SELECT * FROM phs_2021_1;
 
 
--- Ensures all month fields in start_time are double digits
+--The three queries ensure the month, day, and hour field respectively are double digit 
         UPDATE player_stat
            SET start_time = "0" || start_time
          WHERE SUBSTR(start_time, 2, 1) = "/";
-       
--- Ensures all day fields in start_time are double digits       
+          
         UPDATE player_stat
            SET start_time = SUBSTR(start_time, 1, 3) || "0" || SUBSTR(start_time, 4)
          WHERE SUBSTR(start_time, 5, 1) = "/";
          
--- Ensures all hour fields in start_time are double digits
         UPDATE player_stat
            SET start_time = SUBSTR(start_time, 1, 11) || "0" || SUBSTR(start_time, 12)
          WHERE SUBSTR(start_time, 13, 1) = ":";
          
--- Converts all values in start_time to "YYYY-MM-DD hh:mm:ss" format
+--Converts all values in start_time to "YYYY-MM-DD hh:mm:ss" format
          UPDATE player_stat
             SET start_time = datetime(
                              SUBSTR(start_time, 7, 4) || "-" || SUBSTR(start_time, 1, 2) ||
@@ -67,9 +64,9 @@ stat_amount - measure of the stat_name
           WHERE SUBSTRING(start_time, 3, 1) = "/";
 
 
--- Optional code to add boolean column "title_match"
--- which indicates if the match was a title match or not
--- NOTE: this only captures title matches for the 2018 and 2019 season
+--Optional code to add boolean column "title_match"
+--which indicates if the match was a title match or not
+--NOTE: this only captures title matches for the 2018 and 2019 season
 /*
    ALTER TABLE player_stat
     ADD COLUMN title_match AS (CASE
@@ -78,17 +75,14 @@ stat_amount - measure of the stat_name
                                  ELSE 0
                                END);
 */
-
        
--- Sets map_type to proper case
         UPDATE player_stat
            SET map_type = SUBSTR(map_type, 1, 1) || LOWER(SUBSTR(map_type, 2));
 
    ALTER TABLE player_stat
  RENAME COLUMN map_type TO game_mode;
 
-
--- Formats the values in stage
+--Formats the values in stage
         UPDATE player_stat
            SET stage = REPLACE(stage, "Overwatch League Inaugural Season Championship", "2018 Playoffs")
          WHERE SUBSTR(start_time, 1, 4) = "2018";
@@ -135,8 +129,7 @@ stat_amount - measure of the stat_name
            SET stage = "2019 Playoffs"
          WHERE stage = "2019 Post-Season";
          
-         
--- Cleans hero column  
+	 
         UPDATE player_stat
            SET hero = "Lúcio"
          WHERE hero = "LÃºcio";
@@ -145,7 +138,7 @@ stat_amount - measure of the stat_name
            SET hero = "Torbjörn"
          WHERE hero = "TorbjÃ¶rn";
          
--- Alternative queries if you don't want international characters in your dataset
+--Alternate queries if you don't want international characters in your dataset
 /*
         UPDATE player_stat
            SET hero = "Lucio"
@@ -160,8 +153,8 @@ stat_amount - measure of the stat_name
            SET hero = "Cassidy"
          WHERE hero = "McCree";
 
--- Optional query if you would like to maintain a table
--- of all player stats forAll-Star events
+--Optional query if you would like to maintain a table
+--of all player stats for All-Star events
 /*
   CREATE TABLE player_stat_allstar AS
         SELECT * 
@@ -169,7 +162,6 @@ stat_amount - measure of the stat_name
          WHERE stage IN ("2020 APAC All-Stars", "2020 NA All-Stars");
 */
 
--- Deletes the rows that pertain to All-Star events
         DELETE 
           FROM player_stat
          WHERE stage IN ("2020 APAC All-Stars", "2020 NA All-Stars");
