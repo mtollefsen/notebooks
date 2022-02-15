@@ -17,7 +17,7 @@ Problems included:
 - Lack of overarching organizational structure
 
 ### After
-![Overwatch League Database organized v3](https://user-images.githubusercontent.com/97869630/153977932-423e1e73-fc6c-4dad-8a03-781adacebc5e.PNG)
+![Overwatch League Database organized v3](https://user-images.githubusercontent.com/97869630/154042793-6d038483-62af-447b-8d5b-eeafda0a11aa.PNG)
 
 4,920,155 rows of data divided over 7 tables:<br>
 - 5 tables in a hierarchy `season` > `stage` > `match` > `game` > `round`<br>
