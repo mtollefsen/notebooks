@@ -132,7 +132,7 @@
 	             (2020, "San Francisco Shock"),
 	             (2021, "Shanghai Dragons");
 
---"player_stat_[year]"
+--"player_stat"
                 WITH
      game_id_conv AS (
               SELECT match_id,
@@ -154,7 +154,7 @@
       
          ALTER TABLE player_stat
               RENAME match_id TO game_id;
-	      
+
 	       ALTER TABLE player_stat
                 DROP COLUMN stage;
 
@@ -164,7 +164,10 @@
          ALTER TABLE player_stat
                 DROP COLUMN map_name;
 		
-        CREATE TABLE player_stat_2018 (
+         ALTER TABLE player_stat
+	        DROP COLUMN start_time;
+
+        CREATE TABLE player_stat_new (
                      game_id TEXT NOT NULL,
                      team TEXT NOT NULL,
 	             player TEXT NOT NULL,
@@ -174,7 +177,7 @@
 		     PRIMARY KEY (game_id, team, player, hero, stat_name)
 		     );
 	    
-	 INSERT INTO player_stat_2018
+	 INSERT INTO player_stat_new
 	      SELECT game_id,
 		     team,
 		     player,
@@ -182,72 +185,12 @@
 		     stat_name,
 		     MIN(stat_amount)
 		FROM player_stat
-	       WHERE SUBSTR(start_time, 1, 4) = "2018"
 	    GROUP BY game_id, team, player, hero, stat_name;  --group by is used to eliminate the duplicate rows
 	                                                      --for Winston - Melee Kills and Mei - Self Healing
-        CREATE TABLE player_stat_2019 (
-                     game_id TEXT NOT NULL,
-                     team TEXT NOT NULL,
-	             player TEXT NOT NULL,
-	             hero TEXT NOT NULL,
-	             stat_name TEXT NOT NULL,
-                     stat_amount NUMERIC,
-		     PRIMARY KEY (game_id, team, player, hero, stat_name)
-		     );
 
-	 INSERT INTO player_stat_2019
-	      SELECT game_id,
-		     team,
-		     player,
-		     hero,
-		     stat_name,
-		     MIN(stat_amount)
-		FROM player_stat
-	       WHERE SUBSTR(start_time, 1, 4) = "2019"
-	    GROUP BY game_id, team, player, hero, stat_name;
+          DROP TABLE player_stat;
+	 ALTER TABLE player_stat_new RENAME TO player_stat;
 
-        CREATE TABLE player_stat_2020 (
-                     game_id TEXT NOT NULL,
-                     team TEXT NOT NULL,
-	             player TEXT NOT NULL,
-	             hero TEXT NOT NULL,
-	             stat_name TEXT NOT NULL,
-                     stat_amount NUMERIC,
-		     PRIMARY KEY (game_id, team, player, hero, stat_name)
-		     );
-
-	 INSERT INTO player_stat_2020
-	      SELECT game_id,
-		     team,
-		     player,
-		     hero,
-		     stat_name,
-		     MIN(stat_amount)
-		FROM player_stat
-	       WHERE SUBSTR(start_time, 1, 4) = "2020"
-	    GROUP BY game_id, team, player, hero, stat_name;
-	       
-        CREATE TABLE player_stat_2021 (
-                     game_id TEXT NOT NULL,
-                     team TEXT NOT NULL,
-	             player TEXT NOT NULL,
-	             hero TEXT NOT NULL,
-	             stat_name TEXT NOT NULL,
-                     stat_amount NUMERIC,
-		     PRIMARY KEY (game_id, team, player, hero, stat_name)
-		     );
-
-	 INSERT INTO player_stat_2021
-	      SELECT game_id,
-		     team,
-		     player,
-		     hero,
-		     stat_name,
-		     MIN(stat_amount)
-		FROM player_stat
-	       WHERE SUBSTR(start_time, 1, 4) = "2021"
-	    GROUP BY game_id, team, player, hero, stat_name;
-	       
 --"hero"	       
 	CREATE TABLE hero (
                      number INTEGER UNIQUE,
@@ -291,7 +234,7 @@
 		     (33, "Sojourn",       "Damage");
 
 --Adds foreign keys
-                     COMMIT; --prevents SQLite from thinking mutliple transactions are occuring
+                     COMMIT;  --prevents SQLite from thinking mutliple transactions are occuring
 
               PRAGMA foreign_keys = OFF;
 
@@ -365,6 +308,9 @@
 	 INSERT INTO stage_new SELECT * FROM stage;
           DROP TABLE stage;
          ALTER TABLE stage_new RENAME TO stage;	
+
+
+        CREATE TABLE player_stat_new ( 
 
 
         CREATE TABLE player_stat_2018_new (
