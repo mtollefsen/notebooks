@@ -3,23 +3,21 @@
 This is a WORK IN PROGRESS to add a round_length
 column to match_map_stats. The main obstacle is
 ensuring the round_length times are correct as
-midmatch pauses can inflate the times.
+midmatch pauses can inflate the times and figuring
+out the correct time is (currently) a tedious process.
 */
 
--- Adds column "round_length"
        ALTER TABLE match_map_stats
         ADD COLUMN round_length;
-	
-	
--- Populates column "round_length"
+
             UPDATE match_map_stats
                SET round_length = (strftime("%s", round_end_time) - strftime("%s", round_start_time));
                
                
--- Each query corrects the round_length time of a row 
--- (correct time was determined by checking game footage)
--- NOTE: the inflated round_length times are primarily 
--- due to long pauses that occurred midmatch
+--Each query corrects the round_length time of a row 
+--(correct time was determined by checking game footage)
+--NOTE: the inflated round_length times are primarily 
+--due to long pauses that occurred midmatch
             UPDATE match_map_stats
                SET round_length = 443
              WHERE ROWID = 8033;
