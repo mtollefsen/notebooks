@@ -1,8 +1,8 @@
         
 --"round"	
 	CREATE TABLE round (
-                     round_start_time TEXT,
-                     round_end_time TEXT,
+                     start_time TEXT,
+                     end_time TEXT,
 	             game_id TEXT,
 	             round_id TEXT PRIMARY KEY,
 	             map_subsection TEXT,
@@ -19,8 +19,8 @@
 	             );
 	
 	 INSERT INTO round
-              SELECT round_start_time,
-                     round_end_time,
+              SELECT round_start_time as start_time,
+                     round_end_time as end_time,
 	             match_id || "." || game_number as game_id,
 	             match_id || "." || game_number || "." || round_number as round_id,
 	             map_subsection,
@@ -241,8 +241,8 @@
                BEGIN TRANSACTION;
 
 	CREATE TABLE round_new (
-                     round_start_time TEXT,
-                     round_end_time TEXT,
+                     start_time TEXT,
+                     end_time TEXT,
 	             game_id TEXT,
 	             round_id TEXT PRIMARY KEY,
 	             map_subsection TEXT,
