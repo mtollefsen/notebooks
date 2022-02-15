@@ -14,9 +14,9 @@ The original source of the raw data can be found here: https://overwatchleague.c
 - Duplicate rows
 
 ## After
-![Overwatch League Database organized](https://user-images.githubusercontent.com/97869630/152306351-3733b08d-6449-48ed-9d1a-a62543a7ee78.PNG)
-- Added primary keys (bolded)
-- Added foreign keys
+![Overwatch League Database organized v3](https://user-images.githubusercontent.com/97869630/153977932-423e1e73-fc6c-4dad-8a03-781adacebc5e.PNG)
+- Added primary keys (bold)
+- Added foreign keys (italics)
 - Added constraints
 
 ## What I Used
@@ -24,10 +24,6 @@ The original source of the raw data can be found here: https://overwatchleague.c
 - Window functions
 - Aggregate functions
 - Troubleshooting queries
-
-## Plans for Improvement
-- Determine a good primary key for player_stat
-- Study more set theory
 
 ## Resources
 - https://liquipedia.net/overwatch/
