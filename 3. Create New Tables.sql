@@ -280,8 +280,7 @@
          INSERT INTO game_new SELECT * FROM game;
           DROP TABLE game;
          ALTER TABLE game_new RENAME TO game;
-
-
+	 
 	CREATE TABLE match_new (
                      start_time TEXT,
 	             stage TEXT,
@@ -293,8 +292,7 @@
 		     losing_score INTEGER,
 		     FOREIGN KEY (stage) REFERENCES stage(name)
 		     );
-			 
-			 
+			  
 	 INSERT INTO match_new SELECT * FROM match;
           DROP TABLE match;
          ALTER TABLE match_new RENAME TO match;
@@ -309,11 +307,7 @@
           DROP TABLE stage;
          ALTER TABLE stage_new RENAME TO stage;	
 
-
-        CREATE TABLE player_stat_new ( 
-
-
-        CREATE TABLE player_stat_2018_new (
+        CREATE TABLE player_stat_new (
                      game_id TEXT NOT NULL,
                      team TEXT NOT NULL,
 	             player TEXT NOT NULL,
@@ -324,60 +318,10 @@
 		     FOREIGN KEY (game_id) REFERENCES game(game_id),
 		     FOREIGN KEY (hero) REFERENCES hero(name)
 		     );
-			 
-	 INSERT INTO player_stat_2018_new SELECT * FROM player_stat_2018;
-          DROP TABLE player_stat_2018;
-         ALTER TABLE player_stat_2018_new RENAME TO player_stat_2018;
-
-
-        CREATE TABLE player_stat_2019_new (
-                     game_id TEXT NOT NULL,
-                     team TEXT NOT NULL,
-	             player TEXT NOT NULL,
-	             hero TEXT NOT NULL,
-	             stat_name TEXT NOT NULL,
-                     stat_amount NUMERIC,
-		     PRIMARY KEY (game_id, team, player, hero, stat_name),
-		     FOREIGN KEY (game_id) REFERENCES game(game_id),
-		     FOREIGN KEY (hero) REFERENCES hero(name)
-		     );
-
-	 INSERT INTO player_stat_2019_new SELECT * FROM player_stat_2019;
-          DROP TABLE player_stat_2019;
-         ALTER TABLE player_stat_2019_new RENAME TO player_stat_2019;
-
-
-        CREATE TABLE player_stat_2020_new (
-                     game_id TEXT NOT NULL,
-                     team TEXT NOT NULL,
-	             player TEXT NOT NULL,
-	             hero TEXT NOT NULL,
-	             stat_name TEXT NOT NULL,
-                     stat_amount NUMERIC,
-		     PRIMARY KEY (game_id, team, player, hero, stat_name),
-		     FOREIGN KEY (game_id) REFERENCES game(game_id),
-		     FOREIGN KEY (hero) REFERENCES hero(name)
-		     );
-
-	 INSERT INTO player_stat_2020_new SELECT * FROM player_stat_2020;
-          DROP TABLE player_stat_2020;
-         ALTER TABLE player_stat_2020_new RENAME TO player_stat_2020;
-
-        CREATE TABLE player_stat_2021_new (
-                     game_id TEXT NOT NULL,
-                     team TEXT NOT NULL,
-	             player TEXT NOT NULL,
-	             hero TEXT NOT NULL,
-	             stat_name TEXT NOT NULL,
-                     stat_amount NUMERIC,
-		     PRIMARY KEY (game_id, team, player, hero, stat_name),
-		     FOREIGN KEY (game_id) REFERENCES game(game_id),
-		     FOREIGN KEY (hero) REFERENCES hero(name)
-		     );
-
-	 INSERT INTO player_stat_2021_new SELECT * FROM player_stat_2021;
-          DROP TABLE player_stat_2021;
-         ALTER TABLE player_stat_2021_new RENAME TO player_stat_2021;
+		     
+	 INSERT INTO player_stat_new SELECT * FROM player_stat;
+          DROP TABLE player_stat;
+         ALTER TABLE player_stat_new RENAME TO player_stat;
 
                      COMMIT;
 
@@ -399,4 +343,3 @@
 	  DROP TABLE IF EXISTS phs_2020_1;
 	  DROP TABLE IF EXISTS phs_2020_2;
 	  DROP TABLE IF EXISTS phs_2021_1;
-
