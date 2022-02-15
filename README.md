@@ -38,5 +38,5 @@ What I used:
 
 ## Resources
 - Wiki of Overwatch League information <br>    https://liquipedia.net/overwatch/
-- VOD of Overwatch League matches (change "match_id" to the match_id number of the match you want to watch) <br>    https://overwatchleague.com/en-us/match/match_id
+- VODs of Overwatch League matches (change "match_id" to the match_id number of the match you want to watch) <br>    https://overwatchleague.com/en-us/match/match_id
 - Source of raw data (found under "Download the Data" near the bottom) <br>    https://overwatchleague.com/en-us/statslab
