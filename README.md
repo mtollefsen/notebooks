@@ -3,11 +3,11 @@ SQL (specifically SQLite) code that I used to clean and organize data from the O
 
 The original source of the raw data can be found here: https://overwatchleague.com/en-us/statslab under "Download the Data" near the bottom.
 
-### Before
+## Before
 ![Overwatch League Data raw](https://user-images.githubusercontent.com/97869630/152226888-bdc4aa8b-30c1-4126-bbae-a083f2b9c8ba.PNG)
 
-4,958,301 rows of data from 14 CSV files<br>
-Problems included:
+#### 4,958,301 rows of data from 14 CSV files<br>
+#### Problems included
 - Spelling errors
 - Inconsistent formatting
 - Incorrect values
@@ -16,14 +16,14 @@ Problems included:
 - Outdated names
 - Lack of overarching organizational structure
 
-### After
+## After
 ![Overwatch League Database organized v3](https://user-images.githubusercontent.com/97869630/154042793-6d038483-62af-447b-8d5b-eeafda0a11aa.PNG)
 
-4,920,155 rows of data divided over 7 tables:<br>
+#### 4,920,155 rows of data divided over 7 tables<br>
 - 5 tables in a hierarchy `season` > `stage` > `match` > `game` > `round`<br>
 - 2 reference tables `player_stat` and `hero`
   
-Changes include:
+#### Changes include
 - Fixing all of the aforementioned problems
 - Adding **primary keys**
 - Adding *foreign keys*
@@ -31,7 +31,7 @@ Changes include:
 - Adding new data via the `hero` table
 - Bringing database to first normal form
 
-What I used:
+#### What I used
 - Window functions
 - Aggregate functions
 - Troubleshooting queries
