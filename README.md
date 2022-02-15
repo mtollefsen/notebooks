@@ -38,4 +38,4 @@ Changes include:
 
 ## Resources
 - https://liquipedia.net/overwatch/
-- https://overwatchleague.com/en-us/match/match_id (where match_id is the match_id number of the match you want to watch)
+- https://overwatchleague.com/en-us/match/match_id (where "match_id" is the match_id number of the match you want to watch)
