@@ -13,7 +13,8 @@ Problems included:
 - Incorrect values
 - Missing values
 - Duplicate rows
-- No overarching organizational structure
+- Outdated names
+- Lack of overarching organizational structure
 
 ## After
 ![Overwatch League Database organized v3](https://user-images.githubusercontent.com/97869630/153977932-423e1e73-fc6c-4dad-8a03-781adacebc5e.PNG)
@@ -23,10 +24,11 @@ Problems included:
   2 reference tables `player_stat` and `hero`
   
 Changes include:
+- Fixing all of the aforementioned problems
 - Adding **primary keys**
 - Adding *foreign keys*
 - Adding constraints
-- Applying standard formats across entire columns
+- Adding new data via the `hero` table
 - Bringing database to first normal form
 
 ## What I Used
