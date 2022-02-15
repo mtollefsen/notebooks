@@ -42,7 +42,7 @@ stat_amount - measure of the stat_name
         SELECT * FROM phs_2021_1;
 
 
---The three queries ensure the month, day, and hour field respectively are double digit 
+--The three queries ensure the month, day, and hour fields of "start_time" respectively are double digit
         UPDATE player_stat
            SET start_time = "0" || start_time
          WHERE SUBSTR(start_time, 2, 1) = "/";
@@ -64,6 +64,13 @@ stat_amount - measure of the stat_name
           WHERE SUBSTRING(start_time, 3, 1) = "/";
 
 
+        UPDATE player_stat
+           SET map_type = SUBSTR(map_type, 1, 1) || LOWER(SUBSTR(map_type, 2));
+
+   ALTER TABLE player_stat
+ RENAME COLUMN map_type TO game_mode;
+ 
+
 --Optional code to add boolean column "title_match"
 --which indicates if the match was a title match or not
 --NOTE: this only captures title matches for the 2018 and 2019 season
@@ -75,12 +82,7 @@ stat_amount - measure of the stat_name
                                  ELSE 0
                                END);
 */
-       
-        UPDATE player_stat
-           SET map_type = SUBSTR(map_type, 1, 1) || LOWER(SUBSTR(map_type, 2));
 
-   ALTER TABLE player_stat
- RENAME COLUMN map_type TO game_mode;
 
 --Formats the values in stage
         UPDATE player_stat
@@ -153,6 +155,7 @@ stat_amount - measure of the stat_name
            SET hero = "Cassidy"
          WHERE hero = "McCree";
 
+
 --Optional query if you would like to maintain a table
 --of all player stats for All-Star events
 /*
@@ -165,4 +168,3 @@ stat_amount - measure of the stat_name
         DELETE 
           FROM player_stat
          WHERE stage IN ("2020 APAC All-Stars", "2020 NA All-Stars");
-         
