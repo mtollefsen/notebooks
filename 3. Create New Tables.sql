@@ -234,7 +234,7 @@
 		     (33, "Sojourn",       "Damage");
 
 --Adds foreign keys
-                     COMMIT;  --prevents SQLite from thinking mutliple transactions are occuring
+                     COMMIT;  --prevents SQLite from thinking multiple transactions are occurring
 
               PRAGMA foreign_keys = OFF;
 
