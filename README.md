@@ -26,7 +26,7 @@ Changes include:
 - Adding **primary keys**
 - Adding *foreign keys*
 - Adding constraints
-- Creating and applying standard formats
+- Applying standard formats across entire columns
 - Bringing database to first normal form
 
 ## What I Used
