@@ -19,9 +19,9 @@ Problems included:
 ## After
 ![Overwatch League Database organized v3](https://user-images.githubusercontent.com/97869630/153977932-423e1e73-fc6c-4dad-8a03-781adacebc5e.PNG)
 
-7 tables total:<br>
-> 5 tables in a hierarchy `season` > `stage` > `match` > `game` > `round`<br>
-  2 reference tables `player_stat` and `hero`
+4,920,155 rows of data divided over 7 tables:<br>
+- 5 tables in a hierarchy `season` > `stage` > `match` > `game` > `round`<br>
+- 2 reference tables `player_stat` and `hero`
   
 Changes include:
 - Fixing all of the aforementioned problems
