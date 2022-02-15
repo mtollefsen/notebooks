@@ -6,21 +6,30 @@ The original source of the raw data can be found here: https://overwatchleague.c
 ## Before
 ![Overwatch League Data raw](https://user-images.githubusercontent.com/97869630/152226888-bdc4aa8b-30c1-4126-bbae-a083f2b9c8ba.PNG)
 
-4,958,301 rows of data from 14 CSV files, problems included:
+4,958,301 rows of data from 14 CSV files<br>
+Problems included:
 - Spelling errors
 - Inconsistent formatting
 - Incorrect values
 - Missing values
 - Duplicate rows
+- No overarching organizational structure
 
 ## After
 ![Overwatch League Database organized v3](https://user-images.githubusercontent.com/97869630/153977932-423e1e73-fc6c-4dad-8a03-781adacebc5e.PNG)
-- Added primary keys (bold)
-- Added foreign keys (italics)
-- Added constraints
+
+7 tables total:<br>
+> 5 tables in a hierarchy `season` > `stage` > `match` > `game` > `round`<br>
+  2 reference tables `player_stat` and `hero`
+  
+Changes include:
+- Adding **primary keys**
+- Adding *foreign keys*
+- Adding constraints
+- Creating and applying standard formats
+- Bringing database to first normal form
 
 ## What I Used
-- Database normalization
 - Window functions
 - Aggregate functions
 - Troubleshooting queries
