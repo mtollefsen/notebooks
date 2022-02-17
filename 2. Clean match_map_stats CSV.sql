@@ -28,7 +28,7 @@
 
 --Corrects map_subsection of match 21352, game 1, round 1
            UPDATE match_map_stats
-              SET map_subsection  = "MEKA Base"
+              SET map_subsection = "MEKA Base"
             WHERE ROWID = 4065;
 
 
