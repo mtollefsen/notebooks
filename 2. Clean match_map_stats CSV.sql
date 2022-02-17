@@ -99,12 +99,6 @@
 	        RENAME map_round TO round_number;
 
 
---Corrects error where defender_time_banked reported time when the team had yet to be on attack
-            UPDATE match_map_stats
-               SET defender_time_banked = 0
-             WHERE defender_time_banked IN (240, 60);
-
-
 --Formats values in "stage"
             UPDATE match_map_stats
                SET stage = REPLACE(stage, "Overwatch League Inaugural Season Championship", "2018 Playoffs")
