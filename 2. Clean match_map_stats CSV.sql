@@ -78,14 +78,14 @@
  map_round_new AS (
            SELECT mrl.round_start_time,
 	            (CASE
-		       WHEN mms.map_round = "1"
-			 THEN 1
-		       WHEN mms.map_round = "5" AND mrl.lagged_map_round = "3"
-		         THEN 3
-		       WHEN mms.map_round = "7" AND mrl.lagged_map_round = "5"
-		         THEN 4
+		           WHEN mms.map_round = "1"
+			         THEN 1
+		           WHEN mms.map_round = "5" AND mrl.lagged_map_round = "3"
+		             THEN 3
+		           WHEN mms.map_round = "7" AND mrl.lagged_map_round = "5"
+		             THEN 4
 	               ELSE mrl.lagged_map_round + 1
-		     END) as map_round
+		         END) as map_round
               FROM match_map_stats mms
               JOIN map_round_lag mrl ON mrl.round_start_time = mms.round_start_time
                    )
@@ -96,7 +96,13 @@
              WHERE mrn.round_start_time = match_map_stats.round_start_time;
              
        ALTER TABLE match_map_stats
-	    RENAME map_round TO round_number;
+	        RENAME map_round TO round_number;
+
+
+--Corrects error where defender_time_banked reported time when the team had yet to be on attack
+            UPDATE match_map_stats
+               SET defender_time_banked = 0
+             WHERE defender_time_banked IN (240, 60);
 
 
 --Formats values in "stage"
@@ -104,11 +110,11 @@
                SET stage = REPLACE(stage, "Overwatch League Inaugural Season Championship", "2018 Playoffs")
              WHERE SUBSTR(round_start_time, 1, 4) = "2018";
 	     
-	    UPDATE match_map_stats
+	        UPDATE match_map_stats
                SET stage = REPLACE(stage, "Overwatch League -", "2018")
              WHERE SUBSTR(round_start_time, 1, 4) = "2018";
 	     
-	    UPDATE match_map_stats
+	        UPDATE match_map_stats
                SET stage = REPLACE(stage, " - Title Matches", "")
              WHERE SUBSTR(round_start_time, 1, 4) = "2018";
 	     
@@ -116,22 +122,22 @@
                SET stage = REPLACE(stage, " Title Matches", "")
              WHERE SUBSTR(round_start_time, 1, 4) = "2018";
 	     
-	    UPDATE match_map_stats
+	        UPDATE match_map_stats
                SET stage = REPLACE(stage, "Overwatch League", "2019")
              WHERE SUBSTR(round_start_time, 1, 4) = "2019";
 	     
-	    UPDATE match_map_stats
+	        UPDATE match_map_stats
                SET stage = REPLACE(stage, " Title Matches", "")
              WHERE SUBSTR(round_start_time, 1, 4) = "2019";
 	     
-	    UPDATE match_map_stats
+	        UPDATE match_map_stats
                SET stage = "2019 Playoffs"
              WHERE stage = "2019 2019 Post-Season";
 	     
-	    UPDATE match_map_stats
+	        UPDATE match_map_stats
                SET stage = "2020 Stage"
              WHERE stage = "OWL 2020 Regular Season";
 	     
-	    UPDATE match_map_stats
+	        UPDATE match_map_stats
                SET stage = "2021 Stage"
              WHERE stage = "OWL 2021";
