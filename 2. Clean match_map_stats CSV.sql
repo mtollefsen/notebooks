@@ -16,10 +16,10 @@
                                  END);
 
       ALTER TABLE match_map_stats
-      DROP COLUMN team_one_name;
+           RENAME team_one_name TO team_one;
 
       ALTER TABLE match_map_stats
-      DROP COLUMN team_two_name;
+           RENAME team_two_name TO team_two;
 
 
       ALTER TABLE match_map_stats
