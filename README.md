@@ -17,7 +17,7 @@ The original source of the raw data can be found here: https://overwatchleague.c
 - Lack of overarching organizational structure
 
 ## After
-![Overwatch League Database organized v3](https://user-images.githubusercontent.com/97869630/154042793-6d038483-62af-447b-8d5b-eeafda0a11aa.PNG)
+![Overwatch League Database organized v4](https://user-images.githubusercontent.com/97869630/154815413-24f2b310-a25f-4fd7-beed-77aee0237a48.PNG)
 
 #### 4,920,155 rows of data divided over 7 tables<br>
 - 5 tables in a hierarchy `season` > `stage` > `match` > `game` > `round`<br>
