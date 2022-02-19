@@ -1,4 +1,4 @@
-# Overwatch League Data
+# Overwatch League Data Projects
 Data projects that utilize and build upon data from the Overwatch League that I cleaned and organized. Languages: SQL & Python.
 
 ### Projects
