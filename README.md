@@ -30,6 +30,7 @@ The original source of the raw data can be found here: https://overwatchleague.c
 - Adding constraints
 - Adding new data via the `hero` table
 - Bringing database to first normal form
+- Creating database schema
 
 #### What I used
 - Window functions
