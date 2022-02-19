@@ -1,6 +1,8 @@
 # Overwatch League Data
 Data projects that utilize and build upon Overwatch League data that I cleaned and organized. Languages used: SQL, Python.
 
+The raw data I started with can be found here: https://overwatchleague.com/en-us/statslab. The links to download the CSVs are near the bottom under "Download the Data". 
+
 ### Projects
 - [Cleanup - Overwatch League Data](https://github.com/maxtoll/Overwatch-League-Data/tree/main/Cleanup)
 - [Analysis - The Assault on Assault](https://nbviewer.org/github/maxtoll/Overwatch-League-Data/blob/main/Analysis%20-%20The%20Assault%20on%20Assault.ipynb)
