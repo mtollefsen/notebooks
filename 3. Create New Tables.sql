@@ -140,7 +140,7 @@
 
 --"player_stat"
                 WITH
-     game_id_conv AS (
+        game_id_conv AS (
               SELECT match_id,
 	             match_id || "." || game_number as game_id,
 	             map_name
