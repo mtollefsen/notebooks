@@ -1,5 +1,5 @@
 # Overwatch League Data
-Repository of SQL code (specifically SQLite) that I used to clean and organize data from the Overwatch League as well as data projects intended to build upon and utilize this newly cleaned data.
+Data projects that utilize and build upon Overwatch League data that I cleaned and organized. Languages used: SQL, Python.
 
 ### Projects
 - Cleanup - Overwatch League Data
