@@ -4,7 +4,7 @@ Data projects that utilize and build upon Overwatch League data that I cleaned a
 The raw data I started with can be found here: https://overwatchleague.com/en-us/statslab. The links to download the CSVs are near the bottom under "Download the Data". 
 
 ### Projects
-- [Data Cleanup](https://github.com/maxtoll/Overwatch-League-Data/tree/main/Cleanup)
+- [Data Cleanup](https://github.com/maxtoll/Overwatch-League-Data/tree/main/Data%20Cleanup)
 - [Analysis - The Assault on Assault](https://nbviewer.org/github/maxtoll/Overwatch-League-Data/blob/main/Analysis%20-%20The%20Assault%20on%20Assault.ipynb)
 - [Coming Soon]
 
