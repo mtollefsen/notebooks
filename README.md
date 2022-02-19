@@ -36,11 +36,6 @@ Data projects that utilize and build upon Overwatch League data that I cleaned a
 - Bringing database to first normal form
 - Creating database schema
 
-#### What I used
-- Window functions
-- Aggregate functions
-- Troubleshooting queries
-
 ## Resources
 - Wiki of Overwatch League information <br>    https://liquipedia.net/overwatch/
 - VODs of Overwatch League matches (change "match_id" to the match_id number of the match you want to watch) <br>    https://overwatchleague.com/en-us/match/match_id
