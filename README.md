@@ -1,12 +1,13 @@
 # Overwatch League Data
-Repository of SQL code (specifically SQLite) that I used to clean and organize data from the Overwatch League (OWL) as well as data projects intended to build upon and utilize this newly cleaned data.
+Repository of SQL code (specifically SQLite) that I used to clean and organize data from the Overwatch League as well as data projects intended to build upon and utilize this newly cleaned data.
 
-### Project List
-- Data cleanup with SQL
-- The Assault on Assault | Analysis with SQL displayed via Jupyter Notebook
-- [WIP] Connect to API
+### Projects
+- Cleanup - Overwatch League Data
+- Analysis - The Assault on Assault
+- [Coming Soon]
 
-## Before
+## Cleanup - Overwatch League Data
+### Before
 ![Overwatch League Data raw](https://user-images.githubusercontent.com/97869630/152226888-bdc4aa8b-30c1-4126-bbae-a083f2b9c8ba.PNG)
 
 #### 4,958,301 rows of data from 14 CSV files<br>
@@ -19,7 +20,7 @@ Repository of SQL code (specifically SQLite) that I used to clean and organize d
 - Outdated names
 - Lack of overarching organizational structure
 
-## After
+### After
 ![Overwatch League Database organized v4](https://user-images.githubusercontent.com/97869630/154815413-24f2b310-a25f-4fd7-beed-77aee0237a48.PNG)
 
 #### 4,920,155 rows of data divided over 7 tables<br>
