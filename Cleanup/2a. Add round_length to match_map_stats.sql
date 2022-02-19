@@ -4,7 +4,7 @@ This is a WORK IN PROGRESS to add a round_length
 column to match_map_stats. The main obstacle is
 ensuring the round_length times are correct as
 midmatch pauses can inflate the times and figuring
-out the correct time is (currently) a tedious process.
+out the correct time is currently a tedious process.
 */
 
        ALTER TABLE match_map_stats
