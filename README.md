@@ -1,7 +1,10 @@
-# Overwatch League Data Cleanup
-SQL (specifically SQLite) code that I used to clean and organize data from the Overwatch League (OWL).
+# Overwatch League Data
+Repository of SQL code (specifically SQLite) that I used to clean and organize data from the Overwatch League (OWL) as well as data projects intended to build upon and utilize this newly cleaned data.
 
-The original source of the raw data can be found here: https://overwatchleague.com/en-us/statslab under "Download the Data" near the bottom.
+### Project List
+- Data cleanup with SQL
+- The Assault on Assault | Analysis with SQL displayed via Jupyter Notebook
+- [WIP] Connect to API
 
 ## Before
 ![Overwatch League Data raw](https://user-images.githubusercontent.com/97869630/152226888-bdc4aa8b-30c1-4126-bbae-a083f2b9c8ba.PNG)
