@@ -3,7 +3,7 @@ Repository of SQL code (specifically SQLite) that I used to clean and organize d
 
 ### Projects
 - Cleanup - Overwatch League Data
-- Analysis - The Assault on Assault
+- [Analysis - The Assault on Assault](https://nbviewer.org/github/maxtoll/Overwatch-League-Data/blob/main/Analysis%20-%20The%20Assault%20on%20Assault.ipynb)
 - [Coming Soon]
 
 ## Cleanup - Overwatch League Data
