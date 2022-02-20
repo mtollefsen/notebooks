@@ -1,5 +1,5 @@
 ## Overwatch League Data Cleanup
-This is the code I used to clean the Overwatch League data. The original raw data can be found here: https://overwatchleague.com/en-us/statslab, the links to download the data are near the bottom under "Download the Data".
+This is the code I used to clean the Overwatch League data which can be found here: https://overwatchleague.com/en-us/statslab (the links to download the data are near the bottom under "Download the Data").
 
 ### Before
 ![Overwatch League Data raw](https://user-images.githubusercontent.com/97869630/152226888-bdc4aa8b-30c1-4126-bbae-a083f2b9c8ba.PNG)
