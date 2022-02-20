@@ -1,5 +1,6 @@
 # Overwatch League Data Projects
-Data projects that utilize and build upon data from the Overwatch League that I cleaned and organized. Languages: SQL & Python.
+Data projects that utilize and build upon data from the Overwatch League that I cleaned and organized. <br>
+Languages: SQL & Python.
 
 ### Projects
 - [Overwatch League Data Cleanup](https://github.com/maxtoll/Overwatch-League-Data/tree/main/Data%20Cleanup)
