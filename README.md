@@ -1,5 +1,5 @@
 # Overwatch League Data Projects
-This is a repository of data projects that utilize and build upon data from the Overwatch League that I cleaned and organized. <br>
+This is a repository of data projects that utilize data from the Overwatch League that I cleaned and organized. <br>
 Languages: SQL & Python.
 
 ### Projects
