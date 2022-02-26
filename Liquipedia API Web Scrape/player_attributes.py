@@ -17,7 +17,7 @@ player_list = [player[0] for player in player_list]
 headers = {'User-Agent': '[USER AGENT NAME]',
             'Accept-Encoding': 'gzip'}
 data = []
-fill_char = '~'
+fill_char = '='
 alt_char = '-'
 just_length = len(max(player_list, key=len)) + 1
 
