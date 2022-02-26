@@ -1,0 +1,1 @@
+# Liquipedia API Web Scrape
