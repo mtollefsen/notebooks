@@ -19,7 +19,7 @@ headers = {'User-Agent': '[USER AGENT NAME]',
 data = []
 fill_char = '~'
 alt_char = '-'
-format_length = len(max(player_list, key=len)) + 1
+just_length = len(max(player_list, key=len)) + 1
 
 
 
@@ -29,13 +29,14 @@ for player in player_list:
     fill_char, alt_char = alt_char, fill_char
     url = r'https://liquipedia.net/overwatch/api.php?action=parse&format=json&page=' + player
     player_data = [player]
-    print(player, end='')
+    print(player.ljust(just_length, fill_char), end='')
  
     try:
         response = requests.get(url, headers=headers)
     except:
         player_data += (['request error'] * 4)
-        print(' - Failed response')
+        data.append(player_data)
+        print('Failed response')
         time.sleep(30)
         continue
 
@@ -43,7 +44,8 @@ for player in player_list:
     if  response.status_code == 200:
         if 'parse' not in response.json().keys():
             player_data += (['no parse key'] * 4)
-            print(' - No \"parse\" key')
+            data.append(player_data)
+            print('No \"parse\" key')
             time.sleep(30)
             continue
         
@@ -77,10 +79,10 @@ for player in player_list:
             try:
                 temp_index = birthday.index('(') - 1
             except ValueError:
-                print('*problem with birthday')
+                print('Problem with birthday' + (fill_char * 2), end='')
                 player_data.append(player_attr[birth_index])
             else:
-                player_data.append(player_attr[0:temp_index])
+                player_data.append(player_attr[birth_index][0:temp_index])
             
         # add country
         try:
@@ -94,7 +96,7 @@ for player in player_list:
         player_data += ([response.status_code] * 4)
 
     data.append(player_data)
-    print(' - Successful response')
+    print('Successful response')
     time.sleep(30)
     continue
 print('Finished with API Requests')
