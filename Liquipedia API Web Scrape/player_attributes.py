@@ -19,6 +19,10 @@ headers = {'User-Agent': '[USER AGENT NAME]',
 data = []
 fill_char = '~'
 alt_char = '-'
+format_length = len(max(player_list, key=len)) + 1
+
+
+
 # Adds all player data into a list "data" for conversion into a pandas DataFrame
 print('Starting API Requests')
 for player in player_list:
