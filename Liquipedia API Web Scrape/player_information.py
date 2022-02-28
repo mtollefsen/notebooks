@@ -13,7 +13,6 @@ player_list = [player[0] for player in player_list]
 
 headers = {'User-Agent': 'SkeleBro',
             'Accept-Encoding': 'gzip'}
-
 masterPlayerData = []
 count = 0
 just_length = len(max(player_list, key=len)) + 4
@@ -22,7 +21,8 @@ just_length = len(max(player_list, key=len)) + 4
 print('[Starting API Requests]')
 for player in player_list:
     count += 1
-    print(f'{player} ({count}) ')
+    print(player.ljust(just_length, ' '), end='')
+    print(f'({count})')
     player_data = [player]
     
     # searching player name formats should be step one
