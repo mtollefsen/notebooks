@@ -57,7 +57,7 @@ for player in player_list:
         try:
             player = soup.ul.a['title']
         except ValueError:
-            player_data += (['could not find redirect'])
+            player_data += (['could not find redirect'] * 4)
             masterPlayerData.append(player_data)
             print('Could not find redirect!')
             time.sleep(30)
