@@ -28,12 +28,14 @@ headers = {'User-Agent': 'SkeleBro',
             'Accept-Encoding': 'gzip'}
 masterPlayerData = []
 count = 0
+successfulScrapes = 0
 just_length = len(max(player_list, key=len)) + 4
 
 # Gathers player's information from Liquipedia and appends it to masterPlayerData
 print('[Starting API Requests]')
 for player in player_list:
     count += 1
+    ambiguous = False
     print(player.ljust(just_length, ' '), end='')
     print(f'({count})')
     player_data = [player]
@@ -67,6 +69,13 @@ for player in player_list:
             # checking for player info, if none then check for a redirect page
             if soup.select('.infobox-cell-2') == []:
                 try:
+                    # checking if there are multiple redirect links
+                    if len(response.json()['parse']['links']) > 1:
+                        print('Player name has ambiguity!')
+                        player_data += (['ambiguous'] * 4)
+                        masterPlayerData.append(player_data)
+                        ambiguous = True
+                        break
                     player = response.json()['parse']['links'][0]['*']    # alternative: player = soup.ul.a['title']
                 except (ValueError, KeyError):
                     print('could not find redirect')
@@ -106,11 +115,23 @@ for player in player_list:
             else:
                 break
             
+        else:
+            try:
+                print(response.json()['error']['info'])
+            except KeyError:
+                print('failed to parse response')
+            finally:
+                time.sleep(30)
+                continue
+                
     else:
         print('  Could not find page!')
         player_data += (['could not find page'] * 4)
         masterPlayerData.append(player_data)
         time.sleep(30)
+        continue
+    
+    if ambiguous == True:
         continue
     
     # Creates list of player info from our get request
@@ -157,6 +178,7 @@ for player in player_list:
         player_data.append(player_info[country_index].strip())
         
     masterPlayerData.append(player_data)
+    successfulScrapes += 1
     print('Successful scrape!')
     time.sleep(30)
     continue
@@ -164,3 +186,5 @@ for player in player_list:
 print('[Finished with API Requests]')
 
 # TODO: add code for players code was unable to find a page for.
+
+# TODO: add code for exporting data to SQL database
