@@ -26,6 +26,7 @@ print('[Starting API Requests]')
 for player in player_list:
     count += 1
     ambiguous = False
+    playerFormatCache = []
     print(player.ljust(just_length, ' '), end='')
     print(f'({count})')
     player_data = [player]
@@ -34,6 +35,12 @@ for player in player_list:
     for playerNameFormat in [player, player.capitalize(), player.title(), 
                              player.upper(), player.lower()]:
         player = playerNameFormat
+        # Prevents repeat requests
+        if player in playerFormatCache:
+            continue
+        else:
+            playerFormatCache.append(player)
+            
         print(('  ' + player).ljust(just_length, '-'), end='')
         url = r'https://liquipedia.net/overwatch/api.php?action=parse&format=json&page=' + player
         try:
