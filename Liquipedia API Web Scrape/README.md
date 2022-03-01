@@ -3,14 +3,19 @@ Python code that gets information on the players that are in our [Overwatch Leag
 
 ## (Simplified) Flow Chart
 ![player_info Flowchart](https://user-images.githubusercontent.com/97869630/156086689-24c7ee98-da6f-4e35-a83e-d993c63836a9.png) <br>
- This is the flow the code making API requests follows. A GET request is sent for every player's name in multiple formats, taking a fake player name "WiNner BIRD" as an example the code would check the following formats of that player's name:
- - Original Format: WiNner BIRD
- - Capital Case: Winner bird
- - Title Case: Winner Bird
- - Upper Case: WINNER BIRD
- - Lower Case: winner bird <br>
 
-Should any of these lead to a player page with information the code scrapes the info and moves on to the next player. All requests are spaced out by 30 seconds per [Liquipedia's API Terms of Use](https://liquipedia.net/api-terms-of-use).
+This flow chart maps the part of the code that makes API requests. A GET request is sent for every player's name, looking for a page the matches their name. Because pages are case sensitive the code will try multiple formats of a player's name until a page is found or they've run out of formats to try. For example, if the code were trying to find the Liquipedia page for a player that goes by "WiNner BIRD", it would try the following pages in order:
+ 
+ |    Format    |    Result   |
+ |--------------|-------------|
+ | Original     | WiNner BIRD |
+ | Capital case | Winner bird |
+ | Title case   | Winner Bird |
+ | Upper case   | WINNER BIRD |
+ | Lower case   | winner bird |
+<br>
+
+All requests are spaced out by 30 seconds per [Liquipedia's API Terms of Use](https://liquipedia.net/api-terms-of-use).
 
 
 ## Source & Copyright
