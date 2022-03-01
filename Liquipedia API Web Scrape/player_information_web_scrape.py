@@ -7,16 +7,6 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import time
 
-# TODO: def parsing code to replace two repeats of code below
-def attemptParse(response, redirect=False):
-    pass
-
-
-
-
-
-
-
 # Getting a list of all players from Overwatch_League.db
 conn = sqlite3.connect(r'C:\Users\Max\Documents\Data\SQL Database\Overwatch_League.db')
 query = "SELECT DISTINCT player FROM player_stat"
@@ -182,9 +172,22 @@ for player in player_list:
     print('Successful scrape!')
     time.sleep(30)
     continue
-
 print('[Finished with API Requests]')
 
-# TODO: add code for players code was unable to find a page for.
+
+# Manually add info for players not found by the above API requests
+# ['Choihyobin',
+#  'Snow',
+#  'BEBE',
+#  'Mcgravy',
+#  'Onlywish',
+#  'LeeJaegon',
+#  'blase',
+#  'Ttuba',
+#  'Hybrid']
+masterPlayerData[125] = ['Choihyobin', '최효빈', 'Choi Hyo-bin', '1997-09-05', 'South Korea']
+masterPlayerData[128] = ['Snow', 'Mikias Yohannes', 'n/a', 'n/a', 'Ethiopia United States']
+masterPlayerData[160] = ['BEBE', '윤희창', 'Yoon Hee-chang', '1999-02-03', 'South Korea']
+
 
 # TODO: add code for exporting data to SQL database
