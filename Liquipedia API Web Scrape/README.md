@@ -4,7 +4,7 @@ Python code that gets information on the players that are in our [Overwatch Leag
 ## (Simplified) Flow Chart
 ![player_info Flowchart](https://user-images.githubusercontent.com/97869630/156086689-24c7ee98-da6f-4e35-a83e-d993c63836a9.png) <br>
 
-This flow chart maps the part of the code that makes API requests. Then, a GET request is sent for every player's name, looking for a page that matches their name. Because pages are case sensitive the code will try multiple formats of a player's name until a page is found or they've run out of formats to try. For example, if the code were trying to find the Liquipedia page for a player that goes by "WiNner BIRD", it would try the following pages in order:
+This flow chart maps the part of the code that makes API requests. A GET request is sent for every player's name, looking for a page that matches their name. Because pages are case sensitive the code will try multiple formats of a player's name until a page is found or they've run out of formats to try. For example, if the code were trying to find the Liquipedia page for a player that goes by "WiNner BIRD", it would try the following pages in order:
  
    |    Format    |     Page    |
    |--------------|-------------|
