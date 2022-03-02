@@ -5,13 +5,13 @@ import sqlite3
 import time
 
 # Getting a list of all players from Overwatch_League.db
-conn = sqlite3.connect(r'C:\Users\Max\Documents\Data\SQL Database\Overwatch_League.db')
+conn = sqlite3.connect(r'URL PATH HERE')
 query = "SELECT DISTINCT player FROM player_stat"
 player_list = conn.execute(query).fetchall()
 player_list = [player[0] for player in player_list]
 conn.close()
 
-headers = {'User-Agent': 'SkeleBro',
+headers = {'User-Agent': 'USER AGENT NAME HERE',
             'Accept-Encoding': 'gzip'}
 masterPlayerData = []
 playerID = 0
@@ -206,6 +206,6 @@ df.to_sql('player', )
 
 
 # Exports data frame of player info to SQL database
-conn = sqlite3.connect(r'C:\Users\Max\Documents\Data\SQL Database\Overwatch_League.db')
+conn = sqlite3.connect(r'URL PATH HERE')
 df.to_sql('player', conn, index=False)
 conn.close()
