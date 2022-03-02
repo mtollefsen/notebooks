@@ -1,10 +1,7 @@
-# TODO: Go through and switch variables to camelCase
-# TODO: Include success rate on Github README
-
-import sqlite3
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import sqlite3
 import time
 
 # Getting a list of all players from Overwatch_League.db
@@ -12,25 +9,25 @@ conn = sqlite3.connect(r'C:\Users\Max\Documents\Data\SQL Database\Overwatch_Leag
 query = "SELECT DISTINCT player FROM player_stat"
 player_list = conn.execute(query).fetchall()
 player_list = [player[0] for player in player_list]
-
+conn.close()
 
 headers = {'User-Agent': 'SkeleBro',
             'Accept-Encoding': 'gzip'}
 masterPlayerData = []
-count = 0
+playerID = 0
 successfulScrapes = 0
 just_length = len(max(player_list, key=len)) + 4
 
 # Gathers player's information from Liquipedia and appends it to masterPlayerData
 print('[Starting API Requests]')
 for player in player_list:
-    count += 1
+    playerID += 1
     ambiguous = False
     playerFormatCache = []
+    player_data = [playerID, player]
     print(player.ljust(just_length, ' '), end='')
-    print(f'({count})')
-    player_data = [player]
-    
+    print(f'({playerID})')
+
     # Sends requests each with different formatting applied to player name
     for playerNameFormat in [player, player.capitalize(), player.title(), 
                              player.upper(), player.lower()]:
@@ -63,10 +60,10 @@ for player in player_list:
                     time.sleep(30)
                     continue
 
-            # checking for player info, if none then check for a redirect page
+            # Checking for player info, if none then check for a redirect page
             if soup.select('.infobox-cell-2') == []:
                 try:
-                    # checking if there are multiple redirect links
+                    # Checking if there are multiple redirect links
                     if len(response.json()['parse']['links']) > 1:
                         print('Player name has ambiguity!')
                         player_data += (['ambiguous'] * 4)
@@ -161,7 +158,6 @@ for player in player_list:
             temp_index1 = birthday.index('(') + 1
             temp_index2 = birthday.index(')')
         except ValueError:
-            print('problem with birthday--', end='')
             player_data.append(player_info[birth_index].lstrip())
         else:
             player_data.append(player_info[birth_index][temp_index1:temp_index2].lstrip())
@@ -195,6 +191,21 @@ print('[Finished with API Requests]')
 masterPlayerData[125] = ['Choihyobin', '최효빈', 'Choi Hyo-bin', '1997-09-05', 'South Korea']
 masterPlayerData[128] = ['Snow', 'Mikias Yohannes', 'n/a', 'n/a', 'Ethiopia United States']
 masterPlayerData[160] = ['BEBE', '윤희창', 'Yoon Hee-chang', '1999-02-03', 'South Korea']
+masterPlayerData[181] = ['Mcgravy', 'Caleb McGarvey', 'n/a', '1997-02-11', 'United States']
+masterPlayerData[238] = ['Onlywish', '陈李桢', 'Chen Lizhen', '1997-08-15', 'China']
+masterPlayerData[265] = ['LeeJaegon', '이재곤', 'Lee Jae-gon', '2001-08-29', 'South Korea']
+masterPlayerData[270] = ['blase', 'Jeffrey Tsang', 'n/a', '1999-02-22', 'United States']
+masterPlayerData[276] = ['Ttuba', '이호성', 'Lee Ho-sung', '1999-09-21', 'South Korea']
+masterPlayerData[332] = ['Hybrid', 'Dominic Grove', 'n/a', '2001-03-28', 'United Kingdom']
 
 
-# TODO: add code for exporting data to SQL database
+# Putting player information into a pandas dataframe
+columns = ['player_id', 'pro_name', 'real_name', 'romanized_name', 'birthday', 'country']
+df = pd.DataFrame(masterPlayerData, columns=columns)
+df.to_sql('player', )
+
+
+# Exports data frame of player info to SQL database
+conn = sqlite3.connect(r'C:\Users\Max\Documents\Data\SQL Database\Overwatch_League.db')
+df.to_sql('player', conn, index=False)
+conn.close()
