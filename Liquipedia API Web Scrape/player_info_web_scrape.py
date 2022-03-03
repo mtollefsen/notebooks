@@ -9,6 +9,7 @@ def waitThirty():
         count = str(i).ljust(2, ' ')
         print(f'\r{count}', end='\r', flush=True)
         time.sleep(1)
+    print('\r', end='')
 
 
 # Getting a list of all players from Overwatch_League.db
