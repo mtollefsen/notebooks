@@ -5,9 +5,10 @@ import sqlite3
 import time
 
 def waitThirty():
-    for i in range(1, 31):
+    for i in range(30, 0, -1):
+        count = str(i).ljust(2, ' ')
+        print(f'\r{count}', end='\r', flush=True)
         time.sleep(1)
-        print(str(i), end='\r')
 
 
 # Getting a list of all players from Overwatch_League.db
