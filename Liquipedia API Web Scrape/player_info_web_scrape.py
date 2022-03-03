@@ -4,47 +4,62 @@ import pandas as pd
 import sqlite3
 import time
 
+def waitThirty():
+    for i in range(1, 31):
+        time.sleep(1)
+        print(str(i), end='\r')
+
+
 # Getting a list of all players from Overwatch_League.db
-conn = sqlite3.connect(r'URL PATH HERE')
+conn = sqlite3.connect(r'C:\Users\Max\Documents\Data\SQL Database\Overwatch_League.db')
 query = "SELECT DISTINCT player FROM player_stat"
-player_list = conn.execute(query).fetchall()
-player_list = [player[0] for player in player_list]
+playerList = conn.execute(query).fetchall()
+playerList = [player[0] for player in playerList]
 conn.close()
 
-headers = {'User-Agent': 'USER AGENT NAME HERE',
+
+headers = {'User-Agent': 'SkeleBro',
             'Accept-Encoding': 'gzip'}
 masterPlayerData = []
 playerID = 0
 successfulScrapes = 0
-just_length = len(max(player_list, key=len)) + 4
+justLength = len(max(playerList, key=len)) + 4
+formatAltCount = 0
+
+
+print('[Starting API Requests]')
 
 # Gathers player's information from Liquipedia and appends it to masterPlayerData
-print('[Starting API Requests]')
-for player in player_list:
+for player in playerList:
     playerID += 1
     ambiguous = False
     playerFormatCache = []
-    player_data = [playerID, player]
-    print(player.ljust(just_length, ' '), end='')
+    formatAltNeeded = False
+    playerData = [playerID, player]
+    print(player.ljust(justLength, ' '), end='')
     print(f'({playerID})')
+
 
     # Sends requests each with different formatting applied to player name
     for playerNameFormat in [player, player.capitalize(), player.title(), 
-                             player.upper(), player.lower()]:
+                              player.upper(), player.lower()]:
         player = playerNameFormat
         # Prevents repeat requests
         if player in playerFormatCache:
             continue
         else:
             playerFormatCache.append(player)
-            
-        print(('  ' + player).ljust(just_length, '-'), end='')
+            if len(playerFormatCache) > 1:
+                formatAltNeeded = True
+
+
+        print(('  ' + player).ljust(justLength, '-'), end='')
         url = r'https://liquipedia.net/overwatch/api.php?action=parse&format=json&page=' + player
         try:
             response = requests.get(url, headers=headers)
         except:
             print('error with request')
-            time.sleep(30)
+            waitThirty()
             continue
 
         if 'parse' in response.json().keys():
@@ -57,7 +72,7 @@ for player in player_list:
                 except KeyError:
                     print('failed to parse response')
                 finally:
-                    time.sleep(30)
+                    waitThirty()
                     continue
 
             # Checking for player info, if none then check for a redirect page
@@ -66,25 +81,25 @@ for player in player_list:
                     # Checking if there are multiple redirect links
                     if len(response.json()['parse']['links']) > 1:
                         print('Player name has ambiguity!')
-                        player_data += (['ambiguous'] * 4)
-                        masterPlayerData.append(player_data)
+                        playerData += (['ambiguous'] * 4)
+                        masterPlayerData.append(playerData)
                         ambiguous = True
                         break
                     player = response.json()['parse']['links'][0]['*']    # alternative: player = soup.ul.a['title']
                 except (ValueError, KeyError):
                     print('could not find redirect')
-                    time.sleep(30)
+                    waitThirty()
                     continue
                         
                 print('redirect found')
                 time.sleep(30)
                 url = r'https://liquipedia.net/overwatch/api.php?action=parse&format=json&page=' + player
-                print(('  '+player).ljust(just_length, '-'), end='')
+                print(('  '+player).ljust(justLength, '-'), end='')
                 try:
                     response = requests.get(url, headers=headers)
                 except:
                     print('error with redirect request')                      
-                    time.sleep(30)
+                    waitThirty()
                     continue
 
                 try:
@@ -96,18 +111,20 @@ for player in player_list:
                     except KeyError:
                         print('failed to parse redirected response')
                     finally:
-                        time.sleep(30)
+                        waitThirty()
                         continue
                 
                 if soup.select('.infobox-cell-2') == []:
                     print('redirect doesn\'t have player info')
-                    time.sleep(30)
+                    waitThirty()
                     continue
                 else:
                     break
                 
+                
             else:
                 break
+            
             
         else:
             try:
@@ -115,97 +132,96 @@ for player in player_list:
             except KeyError:
                 print('failed to parse response')
             finally:
-                time.sleep(30)
+                waitThirty()
                 continue
-                
+            
+            
     else:
         print('  Could not find page!')
-        player_data += (['could not find page'] * 4)
-        masterPlayerData.append(player_data)
-        time.sleep(30)
+        playerData += (['could not find page'] * 4)
+        masterPlayerData.append(playerData)
+        waitThirty()
         continue
     
     if ambiguous == True:
         continue
     
     # Creates list of player info from our get request
-    player_info = [i.text for i in list(soup.select('.infobox-cell-2'))]
+    playerInfo = [i.text for i in list(soup.select('.infobox-cell-2'))]
     
     # Add real name
     try:
-        name_index = player_info.index('Name:') + 1
+        nameIndex = playerInfo.index('Name:') + 1
     except ValueError:
-        player_data.append('n/a')
+        playerData.append('n/a')
     else:
-        player_data.append(player_info[name_index])
+        playerData.append(playerInfo[nameIndex])
        
     # Add romanized name
     try:
-        rname_index = player_info.index('Romanized Name:') + 1
+        rnameIndex = playerInfo.index('Romanized Name:') + 1
     except ValueError:
-        player_data.append('n/a')
+        playerData.append('n/a')
     else:
-        player_data.append(player_info[rname_index])
+        playerData.append(playerInfo[rnameIndex])
         
     # Add birthday
     try:
-        birth_index = player_info.index('Birth:') + 1
+        birthIndex = playerInfo.index('Birth:') + 1
     except ValueError:
-        player_data.append('n/a')
+        playerData.append('n/a')
     else:
-        birthday = player_info[birth_index]
+        birthday = playerInfo[birthIndex]
         try:
-            temp_index1 = birthday.index('(') + 1
-            temp_index2 = birthday.index(')')
+            tempIndex1 = birthday.index('(') + 1
+            tempIndex2 = birthday.index(')')
         except ValueError:
-            player_data.append(player_info[birth_index].lstrip())
+            playerData.append(playerInfo[birthIndex].lstrip())
         else:
-            player_data.append(player_info[birth_index][temp_index1:temp_index2].lstrip())
+            playerData.append(playerInfo[birthIndex][tempIndex1:tempIndex2].lstrip())
         
     # Add country
     try:
-        country_index = player_info.index('Country:') + 1
+        countryIndex = playerInfo.index('Country:') + 1
     except ValueError:
-        player_data.append('n/a')
+        playerData.append('n/a')
     else:
-        player_data.append(player_info[country_index].strip())
+        playerData.append(playerInfo[countryIndex].strip())
         
-    masterPlayerData.append(player_data)
+    if formatAltNeeded:
+        formatAltCount += 1
+    
+    masterPlayerData.append(playerData)
     successfulScrapes += 1
     print('Successful scrape!')
-    time.sleep(30)
+    waitThirty()
     continue
+
 print('[Finished with API Requests]')
+print()
+print(f'{playerID} scrape attempts')
+print(f'{successfulScrapes} successful scrapes')
+print(f'{formatAltCount} times an alt format was needed')
 
 
 # Manually add info for players not found by the above API requests
-# ['Choihyobin',
-#  'Snow',
-#  'BEBE',
-#  'Mcgravy',
-#  'Onlywish',
-#  'LeeJaegon',
-#  'blase',
-#  'Ttuba',
-#  'Hybrid']
-masterPlayerData[125] = ['Choihyobin', '최효빈', 'Choi Hyo-bin', '1997-09-05', 'South Korea']
-masterPlayerData[128] = ['Snow', 'Mikias Yohannes', 'n/a', 'n/a', 'Ethiopia United States']
-masterPlayerData[160] = ['BEBE', '윤희창', 'Yoon Hee-chang', '1999-02-03', 'South Korea']
-masterPlayerData[181] = ['Mcgravy', 'Caleb McGarvey', 'n/a', '1997-02-11', 'United States']
-masterPlayerData[238] = ['Onlywish', '陈李桢', 'Chen Lizhen', '1997-08-15', 'China']
-masterPlayerData[265] = ['LeeJaegon', '이재곤', 'Lee Jae-gon', '2001-08-29', 'South Korea']
-masterPlayerData[270] = ['blase', 'Jeffrey Tsang', 'n/a', '1999-02-22', 'United States']
-masterPlayerData[276] = ['Ttuba', '이호성', 'Lee Ho-sung', '1999-09-21', 'South Korea']
-masterPlayerData[332] = ['Hybrid', 'Dominic Grove', 'n/a', '2001-03-28', 'United Kingdom']
+masterPlayerData[125][1:] = ['Choihyobin', '최효빈', 'Choi Hyo-bin', '1997-09-05', 'South Korea']
+masterPlayerData[128][1:] = ['Snow', 'Mikias Yohannes', 'n/a', 'n/a', 'Ethiopia United States']
+masterPlayerData[160][1:] = ['BEBE', '윤희창', 'Yoon Hee-chang', '1999-02-03', 'South Korea']
+masterPlayerData[181][1:] = ['Mcgravy', 'Caleb McGarvey', 'n/a', '1997-02-11', 'United States']
+masterPlayerData[238][1:] = ['Onlywish', '陈李桢', 'Chen Lizhen', '1997-08-15', 'China']
+masterPlayerData[265][1:] = ['LeeJaegon', '이재곤', 'Lee Jae-gon', '2001-08-29', 'South Korea']
+masterPlayerData[270][1:] = ['blase', 'Jeffrey Tsang', 'n/a', '1999-02-22', 'United States']
+masterPlayerData[276][1:] = ['Ttuba', '이호성', 'Lee Ho-sung', '1999-09-21', 'South Korea']
+masterPlayerData[332][1:] = ['Hybrid', 'Dominic Grove', 'n/a', '2001-03-28', 'United Kingdom']
 
 
-# Putting player information into a pandas dataframe
+# Putting player information into a pandas DataFrame
 columns = ['player_id', 'pro_name', 'real_name', 'romanized_name', 'birthday', 'country']
 df = pd.DataFrame(masterPlayerData, columns=columns)
-df.to_sql('player', )
 
 
-# Exports data frame of player info to SQL database
-conn = sqlite3.connect(r'URL PATH HERE')
-df.to_sql('player', conn, index=False)
+# Exports DataFrame of player info to SQL database
+conn = sqlite3.connect(r'C:\Users\Max\Documents\Data\SQL Database\Overwatch_League.db')
+df.to_sql('player', con=conn, index=False)
 conn.close()
