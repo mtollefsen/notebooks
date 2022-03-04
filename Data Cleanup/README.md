@@ -1,8 +1,7 @@
 ## Overwatch League Data Cleanup
 This is the code I used to clean data from the Overwatch League which can be found here: https://overwatchleague.com/en-us/statslab (the links to download the data are near the bottom under "Download the Data").
 
-### Before
-![Overwatch League Data raw](https://user-images.githubusercontent.com/97869630/152226888-bdc4aa8b-30c1-4126-bbae-a083f2b9c8ba.PNG)
+## Before
 
 #### 4,958,301 rows of data from 14 CSV files<br>
 #### Problems included
@@ -14,10 +13,9 @@ This is the code I used to clean data from the Overwatch League which can be fou
 - Outdated names
 - Lack of overarching organizational structure
 
-### After
-![Overwatch League Database organized v4](https://user-images.githubusercontent.com/97869630/154815413-24f2b310-a25f-4fd7-beed-77aee0237a48.PNG)
+## After
 
-#### 4,920,155 rows of data divided over 7 tables<br>
+#### 4,920,155 rows of data connected across 7 tables<br>
 - 5 tables in a hierarchy `season` > `stage` > `match` > `game` > `round`<br>
 - 2 reference tables `player_stat` and `hero`
   
@@ -29,6 +27,9 @@ This is the code I used to clean data from the Overwatch League which can be fou
 - Adding new data via the `hero` table
 - Bringing database to first normal form
 - Outlining the database schema
+
+## Database Schema
+![Overwatch League Database organized v4](https://user-images.githubusercontent.com/97869630/154815413-24f2b310-a25f-4fd7-beed-77aee0237a48.PNG)
 
 ## Resources
 - Wiki of Overwatch League information <br>    https://liquipedia.net/overwatch/
