@@ -1,9 +1,9 @@
 # Liquipedia API Web Scrape
-Python code that gets information on the players that are in our [Overwatch League database](https://github.com/mtollefsen/overwatch-league-data-projects/tree/main/Data%20Cleanup) by sending requests to Liquipedia's API and parsing the HTML code. Currently the code gets a player's real name, romanized name (if applicable), birthday, and country from Liquipedia.
+Python code that gets information on the players that are in our [Overwatch League database](https://github.com/mtollefsen/overwatch-league-data-projects/tree/main/Data%20Cleanup) by sending requests to Liquipedia.net's API and parsing the HTML it gets back. The code gets a player's real name, romanized name (if applicable), birthday, and country.
 
 ## Flow Chart (Simplified)
 ![player_info Flowchart](https://user-images.githubusercontent.com/97869630/156310982-ac286d7e-c443-4cd6-9d97-16446aa1357c.png) <br>
-
+ 
 This flow chart maps the part of the code that makes API requests. A GET request is sent for every player's name, looking for a page that matches their name. Because pages are case sensitive the code will try multiple formats of a player's name until a page is found or they've run out of formats to try. For example, if the code were trying to find the Liquipedia page for a player that goes by "WiNner BIRD", it would try the following pages in order:
  
    |    Format    |     Page    |
