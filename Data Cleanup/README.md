@@ -26,7 +26,6 @@ This is the code I used to clean data from the Overwatch League which can be fou
 - Adding constraints
 - Adding new data via the `hero` table
 - Bringing database to first normal form
-- Outlining the database schema
 
 ## Database Schema
 ![Overwatch League Database organized v4](https://user-images.githubusercontent.com/97869630/154815413-24f2b310-a25f-4fd7-beed-77aee0237a48.PNG)
