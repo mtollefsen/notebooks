@@ -1,9 +1,9 @@
 ## Overwatch League Data Cleanup
-This is the code I used to clean data from the Overwatch League which can be found here: https://overwatchleague.com/en-us/statslab (the links to download the data are near the bottom under "Download the Data").
+This is the SQLite code I used to clean data from the Overwatch League (which can be found here: https://overwatchleague.com/en-us/statslab near the bottom of the page under "Download the Data") and turn it into a connected database.
 
 ## Before
 
-#### 4,958,301 rows of data from 14 CSV files<br>
+#### 4,958,301 rows of data from 14 CSV flat files<br>
 #### Problems included
 - Spelling errors
 - Inconsistent formatting
