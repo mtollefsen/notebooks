@@ -1,5 +1,5 @@
 # Liquipedia API Web Scrape
-Python code that gets information on the players that are in our [Overwatch League database](https://github.com/mtollefsen/overwatch-league-data-projects/tree/main/Data%20Cleanup) by sending requests to Liquipedia.net's API and parsing the HTML it gets back. The code gets a player's real name, romanized name (if applicable), birthday, and country. Here's an example of the information the code fetches for the first 10 players in our player list:
+Python code that gets information on the players that are in our [Overwatch League database](https://github.com/mtollefsen/overwatch-league-data-projects/tree/main/Data%20Cleanup) by sending requests to Liquipedia.net's API and parsing the HTML it gets back. In order, the code gets a player's real name, romanized name (if applicable), birthday, and country. Here's an example of the information the code fetches for the first 10 players in our player list:
 
 ![Capture](https://user-images.githubusercontent.com/97869630/156715175-17c1670f-1668-4c88-b9f0-504af38a3278.PNG)
 
