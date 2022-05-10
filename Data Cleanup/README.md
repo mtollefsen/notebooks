@@ -1,5 +1,5 @@
 ## Overwatch League Data Cleanup
-This is the SQLite code I used to clean data from the Overwatch League (which can be found here: https://overwatchleague.com/en-us/statslab near the bottom of the page under "Download the Data") and turn it into a connected database.
+This is the SQLite code I used to clean data from the Overwatch League and turn it into a connected database.
 
 ## Before
 
