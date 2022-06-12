@@ -3,7 +3,7 @@ This is the SQLite code I used to clean data from the Overwatch League and turn 
 
 ## Before
 
-#### 4,958,301 rows of data from 14 CSV flat files<br>
+#### 4,958,301 rows of data from 14 flat CSV files<br>
 #### Problems included
 - Spelling errors
 - Inconsistent formatting
