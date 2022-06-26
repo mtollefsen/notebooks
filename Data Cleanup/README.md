@@ -31,7 +31,7 @@ This is the SQLite code I used to clean data from the Overwatch League and turn 
 ![Overwatch League Database organized v4](https://user-images.githubusercontent.com/97869630/154815413-24f2b310-a25f-4fd7-beed-77aee0237a48.PNG)
 
 ## Resources
-- Wiki of Overwatch League information <br>    https://liquipedia.net/overwatch/{:target="_blank" rel="noopener"}
-- VODs of Overwatch League matches (change "match_id" to the match_id number of the match you want to watch) <br>    https://overwatchleague.com/en-us/match/match_id{:target="_blank" rel="noopener"}
-- Source of raw data (found under "Download the Data" near the bottom) <br>    https://overwatchleague.com/en-us/statslab{:target="_blank" rel="noopener"}
+- Wiki of Overwatch League information <br>    https://liquipedia.net/overwatch/
+- VODs of Overwatch League matches (change "match_id" to the match_id number of the match you want to watch) <br>    https://overwatchleague.com/en-us/match/match_id
+- Source of raw data (found under "Download the Data" near the bottom) <br>    https://overwatchleague.com/en-us/statslab
 
