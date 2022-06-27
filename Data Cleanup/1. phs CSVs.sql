@@ -42,7 +42,7 @@ stat_amount - measure of the stat_name
         SELECT * FROM phs_2021_1;
 
 
---The three queries ensure the month, day, and hour fields of "start_time" respectively are double digit
+--Ensure the month, day, and hour fields of "start_time" respectively are double digit
         UPDATE player_stat
            SET start_time = "0" || start_time
          WHERE SUBSTR(start_time, 2, 1) = "/";
@@ -55,7 +55,7 @@ stat_amount - measure of the stat_name
            SET start_time = SUBSTR(start_time, 1, 11) || "0" || SUBSTR(start_time, 12)
          WHERE SUBSTR(start_time, 13, 1) = ":";
          
---Converts all values in start_time to "YYYY-MM-DD hh:mm:ss" format
+--Convert all values in start_time to "YYYY-MM-DD hh:mm:ss" format
          UPDATE player_stat
             SET start_time = datetime(
                              SUBSTR(start_time, 7, 4) || "-" || SUBSTR(start_time, 1, 2) ||
@@ -84,7 +84,7 @@ stat_amount - measure of the stat_name
 */
 
 
---Formats the values in stage
+--Format the values in stage
         UPDATE player_stat
            SET stage = REPLACE(stage, "Overwatch League Inaugural Season Championship", "2018 Playoffs")
          WHERE SUBSTR(start_time, 1, 4) = "2018";
@@ -131,7 +131,7 @@ stat_amount - measure of the stat_name
            SET stage = "2019 Playoffs"
          WHERE stage = "2019 Post-Season";
          
-	 
+ 
         UPDATE player_stat
            SET hero = "Lúcio"
          WHERE hero = "LÃºcio";
