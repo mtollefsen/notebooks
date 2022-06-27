@@ -26,13 +26,13 @@
            RENAME control_round_name TO map_subsection;
 
 
---Corrects map_subsection of match 21352, game 1, round 1
+--Correct map_subsection of match 21352, game 1, round 1
            UPDATE match_map_stats
               SET map_subsection = "MEKA Base"
             WHERE ROWID = 4065;
 
 
---Creates an estimate (based off game footage) of round_start_time for match 21352, game 1, round 1
+--Create an estimate (based off game footage) of round_start_time for match 21352, game 1, round 1
            UPDATE match_map_stats
               SET round_start_time = (SELECT datetime((strftime("%s", round_end_time) - 215), "unixepoch")
                                         FROM match_map_stats
@@ -40,7 +40,7 @@
             WHERE ROWID = 4065;
  
  
---Each query deletes a duplicate row (some with incorrect round_start_time)
+--Delete duplicate rows (some have incorrect round_start_time)
       DELETE FROM match_map_stats
             WHERE ROWID = 4066;
                    
@@ -54,7 +54,7 @@
             WHERE ROWID = 9943;
           
           
---Each query corrects a game number
+--Correct a game numbers
            UPDATE match_map_stats
               SET game_number = "4"
             WHERE ROWID IN (664, 665);
@@ -64,7 +64,7 @@
             WHERE ROWID IN (5364, 5365);
             
             
---Corrects the round numbers in "map_round"
+--Correct the round numbers in "map_round"
 --NOTE: This specifically corrects an error where many
 --of the round numbers were increasing in steps of 2 
 --(e.g. "1, 3, 5" instead of "1, 2, 3")
@@ -99,13 +99,13 @@
 	   RENAME map_round TO round_number;
 
 
---Corrects error where time is shown as banked for the team that hasn't been on attack yet
+--Correct error where time is shown as banked for the team that hasn't been on attack yet
            UPDATE match_map_stats
               SET defender_time_banked = 0
             WHERE defender_time_banked = 240;
 
 
---Formats values in "stage"
+--Format values in "stage"
            UPDATE match_map_stats
               SET stage = REPLACE(stage, "Overwatch League Inaugural Season Championship", "2018 Playoffs")
             WHERE SUBSTR(round_start_time, 1, 4) = "2018";
