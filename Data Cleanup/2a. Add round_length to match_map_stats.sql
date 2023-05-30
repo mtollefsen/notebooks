@@ -2,9 +2,11 @@
 /*
 This is a WORK IN PROGRESS to add a round_length
 column to match_map_stats. The main obstacle is
-ensuring the round_length times are correct as
-midmatch pauses can inflate the times and figuring
-out the correct time is currently a tedious process.
+ensuring the round_length times are correct is
+midmatch pauses which inflate the round times. 
+Figuring out the correct time is currently a 
+tedious process where I have to watch the match
+VOD and indvidually correct each round in the code.
 */
 
        ALTER TABLE match_map_stats
