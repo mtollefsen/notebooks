@@ -1,6 +1,11 @@
 # Overwatch League Data Projects
-This is a repository of data projects that utilize data from the Overwatch League. <br>
-Languages: SQL & Python.
+This is a repository of personal projects that utilize data from the Overwatch League. The purpose of these projects was to give me more experience in useful skills and technologies including:
+- Data cleanup and organization
+- Data visualization
+- Communicating results from data analysis
+- SQL
+- Python
+- Tableau
 
 ### Projects
 - [Overwatch League Data Cleanup](https://github.com/maxtoll/Overwatch-League-Data/tree/main/Data%20Cleanup)
