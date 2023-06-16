@@ -3,7 +3,7 @@ This is the SQLite code I used to clean data from the Overwatch League and turn 
 
 ## Before
 
-#### 4,958,301 rows of data from 14 flat CSV files<br>
+#### 4,958,301 rows of data from 14 flat CSV files
 #### Problems included
 - Spelling errors
 - Inconsistent formatting
@@ -15,7 +15,7 @@ This is the SQLite code I used to clean data from the Overwatch League and turn 
 
 ## After
 
-#### 4,920,155 rows of data connected across 7 tables<br>
+#### 4,920,155 rows of data connected across 7 tables
 - 5 tables in a hierarchy `season` > `stage` > `match` > `game` > `round`<br>
 - 2 reference tables `player_stat` and `hero`
   
