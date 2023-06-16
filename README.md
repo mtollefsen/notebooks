@@ -2,6 +2,7 @@
 This is a repository of personal projects that utilize data from the Overwatch League. The purpose of these projects was to give me more experience in useful skills and technologies including:
 - Data cleanup and organization
 - Data visualization
+- Web scraping
 - Communicating results from data analysis
 - SQL
 - Python
