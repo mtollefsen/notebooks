@@ -192,7 +192,7 @@
 		     MIN(stat_amount)
 		FROM player_stat
 	    GROUP BY game_id, team, player, hero, stat_name;  --group by is used to eliminate the duplicate rows
-	                                                      --for Winston - Melee Kills and Mei - Self Healing
+	                                                      --for "Winston - Melee Kills" and "Mei - Self Healing"
 
           DROP TABLE player_stat;
 	 ALTER TABLE player_stat_new RENAME TO player_stat;
@@ -239,7 +239,7 @@
 		     (32, "Echo",          "Damage"),
 		     (33, "Sojourn",       "Damage");
 
---Adds foreign keys
+--Add foreign keys
                      COMMIT;  --prevents SQLite from thinking multiple transactions are occurring
 
               PRAGMA foreign_keys = OFF;
@@ -336,7 +336,7 @@
 
               PRAGMA foreign_keys = ON;
 
---Drops all redundant tables
+--Drop all old, now redundant, tables
           DROP TABLE IF EXISTS match_map_stats;
 	  DROP TABLE IF EXISTS player_stat;
 	  DROP TABLE IF EXISTS phs_2018_stage_1;
