@@ -4,6 +4,8 @@ import pandas as pd
 import sqlite3
 import time
 
+# Function that prints a 30 second countdown
+# Liquipedia API rules require 30 seconds wait between API requests
 def waitThirty():
     for i in range(30, 0, -1):
         count = str(i).ljust(2, ' ')
@@ -147,7 +149,8 @@ for player in playerList:
     
     if ambiguous == True:
         continue
-    
+
+    # Player's page was found successfully
     # Creates list of player info from our get request
     playerInfo = [i.text for i in list(soup.select('.infobox-cell-2'))]
     
@@ -199,6 +202,7 @@ for player in playerList:
     waitThirty()
     continue
 
+# All API requests finished, printing stats
 print('[Finished with API Requests]')
 print()
 print(f'{playerID} scrape attempts')
