@@ -161,7 +161,7 @@
          ALTER TABLE player_stat
               RENAME match_id TO game_id;
 
-	       ALTER TABLE player_stat
+	 ALTER TABLE player_stat
                 DROP COLUMN stage;
 
          ALTER TABLE player_stat
