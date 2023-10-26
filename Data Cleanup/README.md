@@ -1,5 +1,5 @@
 ## Overwatch League Data Cleanup
-This is the SQLite code I used to clean data from the Overwatch League and turn it into a connected database (not reflected in the code is the various queries I used to find errors in the data and ensure it was clean and uniform).
+This is the SQLite code I used to clean data from the Overwatch League and turn it into a connected database (not reflected in the code is the various queries I used to find the all the major and minor errors in the data).
 
 ## Before
 
