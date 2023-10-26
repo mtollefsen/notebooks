@@ -1,4 +1,4 @@
---Correct column names
+--Correct spelling of column names
       ALTER TABLE match_map_stats
            RENAME attacker_control_perecent TO attacker_control_percent;
            
@@ -107,7 +107,7 @@
             WHERE defender_time_banked = 240;
 
 
---Format values in "stage"
+--Format values in "stage" to follow a single naming convention
            UPDATE match_map_stats
               SET stage = REPLACE(stage, "Overwatch League Inaugural Season Championship", "2018 Playoffs")
             WHERE SUBSTR(round_start_time, 1, 4) = "2018";
