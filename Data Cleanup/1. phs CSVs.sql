@@ -131,7 +131,7 @@ stat_amount - measure of the stat_name
            SET stage = "2019 Playoffs"
          WHERE stage = "2019 Post-Season";
          
- 
+ --Cleanup hero names
         UPDATE player_stat
            SET hero = "Lúcio"
          WHERE hero = "LÃºcio";
@@ -151,6 +151,7 @@ stat_amount - measure of the stat_name
          WHERE hero IN ("TorbjÃ¶rn", "Torbjörn");
 */
 
+--McCree was renamed to Cassidy
         UPDATE player_stat
            SET hero = "Cassidy"
          WHERE hero = "McCree";
