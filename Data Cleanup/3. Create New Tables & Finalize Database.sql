@@ -239,7 +239,7 @@
 		     (32, "Echo",          "Damage"),
 		     (33, "Sojourn",       "Damage");
 
---Add foreign keys
+--Add foreign keys to connect tables
                      COMMIT;  --prevents SQLite from thinking multiple transactions are occurring
 
               PRAGMA foreign_keys = OFF;
@@ -336,7 +336,7 @@
 
               PRAGMA foreign_keys = ON;
 
---Drop all old, now redundant, tables
+--Drop all old (now redundant) tables
           DROP TABLE IF EXISTS match_map_stats;
 	  DROP TABLE IF EXISTS player_stat;
 	  DROP TABLE IF EXISTS phs_2018_stage_1;
