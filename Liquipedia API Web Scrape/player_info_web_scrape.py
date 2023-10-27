@@ -241,6 +241,7 @@ for player in playerList:
     print('Successful scrape!')
     waitThirty()
     continue
+# end of main for loop
 
 # All API requests finished ==============================================================================================
 # print stats
