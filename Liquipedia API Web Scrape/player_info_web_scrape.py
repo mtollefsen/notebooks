@@ -162,7 +162,6 @@ masterPlayerData = []  # list where we'll put all player data into
 playerID = 0
 successfulScrapes = 0
 ambiguousPlayerNames = 0
-formatAltCount = 0
 justLength = len(max(playerList, key=len)) + 4   # justification length for nice printing
 
 print('[Starting API Requests]')
@@ -170,7 +169,6 @@ print('[Starting API Requests]')
 # Main for loop, gather player's information from Liquipedia.net and append it to masterPlayerData
 for player in playerList:
     playerID += 1
-    formatAltNeeded = False
     playerData = [playerID, player]
     print(player.ljust(justLength, ' '), end='')
     print(f'({playerID})')
@@ -232,9 +230,6 @@ for player in playerList:
         playerData.append('n/a')
     else:
         playerData.append(playerInfo[countryIndex].strip())
-        
-    if formatAltNeeded:
-        formatAltCount += 1
     
     masterPlayerData.append(playerData)
     successfulScrapes += 1
@@ -268,6 +263,6 @@ columns = ['player_id', 'pro_name', 'real_name', 'romanized_name', 'birthday', '
 df = pd.DataFrame(masterPlayerData, columns=columns)
 
 # Export DataFrame of player info to SQL database
-conn = sqlite3.connect(r'URL HERE')
+conn = sqlite3.connect(r'FILE PATH TO DATABASE HERE')
 df.to_sql('player', con=conn, index=False)
 conn.close()
